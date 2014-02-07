@@ -91,7 +91,7 @@
     event.preventDefault();
     var test = $(event.target).closest('tr').find('[name=test]').val();
     var format = $(event.target).closest('tr').find('[name=format]').text();
-    var url = 'https://github.com/gr2m/moment.parseFormat.js/issues/new?title='+test+' → '+format+'&body=`moment.parseFormat(\''+test+'\')` parsed to `'+format+'`, I expected: `<please fill in>`'
+    var url = 'https://github.com/gr2m/moment.parseFormat/issues/new?title='+test+' → '+format+'&body=`moment.parseFormat(\''+test+'\')` parsed to `'+format+'`, I expected: `<please fill in>`'
     window.open(url);
   })
 
