@@ -38,8 +38,8 @@
 
   var regexFillingWords = /\b(at)\b/i;
 
-  function parseDateFormat(string) {
-    var format = string;
+  function parseDateFormat(dateString) {
+    var format = dateString;
 
     // escape filling words
     format = format.replace(regexFillingWords, '[$1]');
