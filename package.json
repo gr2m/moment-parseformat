@@ -1,0 +1,24 @@
+{
+  "name": "moment.parseFormat",
+  "version": "0.0.2",
+  "description": "A moment.js plugin to extract the format of a date/time string",
+  "main": "moment.parseFormat.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/gr2m/moment.parseFormat.git"
+  },
+  "keywords": [
+    "momentjs",
+    "date",
+    "parse"
+  ],
+  "author": "Gregor Martynus <gregor@martynus.net>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/gr2m/moment.parseFormat/issues"
+  },
+  "homepage": "http://gr2m.github.io/moment.parseFormat"
+}
