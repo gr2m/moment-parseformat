@@ -1,6 +1,6 @@
 {
   "name": "moment-parseformat",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "A moment.js plugin to extract the format of a date/time string",
   "main": "moment.parseFormat.js",
   "scripts": {
