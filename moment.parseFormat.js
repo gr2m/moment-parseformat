@@ -30,6 +30,7 @@
   var regexHoursMinutesAmPm = new RegExp( '\\d{1,2}\\:\\d{1,2}(\\s*)' + amOrPm,  'i' );
   var regexHoursAmPm = new RegExp( '\\d{1,2}(\\s*)' + amOrPm,  'i' );
 
+  var regexHoursMinutesSeconds = /\d{1,2}:\d{2}:\d{2}/;
   var regexHoursMinutes = /\d{1,2}:\d{2}/;
   var regexYearLong = /\d{4}/;
   var regexDay = /\d{1,2}/;
@@ -80,7 +81,10 @@
     // 10pm ☛ ha
     format = format.replace(regexHoursAmPm, 'h$1a');
 
-    // 10:30 ☛ h:mm
+    // 10:30:20 ☛ H:mm:ss
+    format = format.replace(regexHoursMinutesSeconds, 'H:mm:ss');
+
+    // 10:30 ☛ H:mm
     format = format.replace(regexHoursMinutes, 'H:mm');
 
     // do we still have numbers left?
