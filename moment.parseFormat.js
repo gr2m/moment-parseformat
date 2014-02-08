@@ -36,7 +36,7 @@
   var regexDay = /\d{1,2}/;
   var regexYearShort = /\d{2}/;
 
-  var regexFillingWords = /(at)/i;
+  var regexFillingWords = /\b(at)\b/i;
 
   function parseDateFormat(string) {
     var format = string;
