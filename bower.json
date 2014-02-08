@@ -22,7 +22,7 @@
   ],
   "deDependencies": {
     "bootstrap": "~3.1.0",
-    "bootstrap-editable-table": "~0.0.4"
+    "bootstrap-editable-table": "~0.1.0"
   },
   "dependencies": {
     "momentjs": "~2.5.1"

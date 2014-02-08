@@ -115,7 +115,7 @@
     '2014-01-10 20:00:15',
     'Thursday at 9:20pm'
   ]
-  $table.editableTable().trigger('add:records', [tests.map(function(test) { return {test: test} })])
+  $table.editableTable('add', tests.map(function(test) { return {test: test} }));
   $table.find('tbody tr:not(:last-child) input').trigger('input');
   </script>
 </body>
