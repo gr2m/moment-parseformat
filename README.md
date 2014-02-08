@@ -6,11 +6,18 @@ moment.parseFormat – a moment.js plugin
 Installation
 ------------
 
-Simplest way to install is using [bower](http://bower.io/):
+Install using [bower](http://bower.io/) for usage in browser:
 
 ```
-bower install --save moment.parseFormat
+bower install --save moment-parseformat
 ```
+
+Install using [npm](https://npmjs.org/) for node.js:
+
+```
+npm install --save moment.parseformat
+```
+
 
 Usage
 -----
@@ -18,7 +25,7 @@ Usage
 ```js
 var format = moment.parseFormat('Thursday, February 6th, 2014 9:20pm');
 // dddd, MMMM Do, YYYY h:mma
-moment.format(format); // format 
+moment.format(format); // format
 ```
 
 Fine Print

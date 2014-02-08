@@ -1,5 +1,5 @@
 {
-  "name": "moment.parseFormat",
+  "name": "moment-parseformat",
   "version": "0.0.2",
   "description": "A moment.js plugin to extract the format of a date/time string",
   "main": "moment.parseFormat.js",
@@ -20,5 +20,8 @@
   "bugs": {
     "url": "https://github.com/gr2m/moment.parseFormat/issues"
   },
-  "homepage": "http://gr2m.github.io/moment.parseFormat"
+  "homepage": "http://gr2m.github.io/moment.parseFormat",
+  "dependencies": {
+    "moment": "~2.5.1"
+  }
 }
