@@ -1,8 +1,18 @@
-/* global moment */
+'use strict';
 
-(function(moment){
-  'use strict';
-
+(function (root, factory) {
+  /* global define */
+  if (typeof define === 'function' && define.amd) {
+    define(['moment'], function (moment) {
+      moment.parseFormat = factory(moment);
+      return moment.parseFormat;
+    });
+  } else if (typeof exports === 'object') {
+    module.exports = factory(require('moment'));
+  } else {
+    root.moment.parseFormat = factory(root.moment);
+  }
+})(this, function (/*moment*/) { // jshint ignore:line
   var dayNames =  [ 'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
   var abbreviatedDayNames =  [ 'Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
   var shortestDayNames = ['Su','Mo','Tu','We','Th','Fr','Sa'];
@@ -106,5 +116,5 @@
     return format;
   }
 
-  moment.parseFormat = parseDateFormat;
-})(moment);
+  return parseDateFormat;
+});
