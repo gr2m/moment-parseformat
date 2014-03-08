@@ -28,12 +28,9 @@
   var regexAbbreviatedMonthNames = new RegExp( abbreviatedMonthNames.join('|'), 'i' );
 
   var regexFirstSecondThirdFourth = /(\d+)(st|nd|rd|th)\b/i;
-  var regexBigEndianLong = /(\d{4})\-(\d{1,2})\-(\d{1,2})/;
-  var regexBigEndianShort = /(\d{2})\-(\d{1,2})\-(\d{1,2})/;
-  var regexLittleEndianLong = /(\d{1,2})\.(\d{1,2})\.(\d{4})/;
-  var regexLittleEndianShort = /(\d{1,2})\.(\d{1,2})\.(\d{2})/;
-  var regexMiddleEndianLong = /(\d{1,2})\/(\d{1,2})\/(\d{4})/;
-  var regexMiddleEndianShort = /(\d{1,2})\/(\d{1,2})\/(\d{2})/;
+  var regexBigEndian = /(\d{2,4})\-(\d{1,2})\-(\d{1,2})/;
+  var regexLittleEndian = /(\d{1,2})\.(\d{1,2})\.(\d{2,4})/;
+  var regexMiddleEndian = /(\d{1,2})\/(\d{1,2})\/(\d{2,4})/;
 
   var amOrPm = '('+[amDesignator,pmDesignator].join('|')+')';
   var regexHoursMinutesSecondsAmPm = new RegExp( '\\d{1,2}\\:\\d{1,2}\\:\\d{1,2}(\\s*)' + amOrPm,  'i' );
@@ -76,16 +73,13 @@
     // DAY - MONTH - YEAR ORDER
 
     // 03-04-05 ☛ yy-
-    format = format.replace( regexBigEndianLong, 'YYYY-MM-DD');
-    format = format.replace( regexBigEndianShort, 'YY-MM-DD');
+    format = format.replace( regexBigEndian, replaceBigEndian);
 
     // Little-endian (day, month, year), e.g. 05.04.03
-    format = format.replace(regexLittleEndianLong, 'DD.MM.YYYY');
-    format = format.replace(regexLittleEndianShort, 'DD.MM.YY');
+    format = format.replace(regexLittleEndian, replaceLittleEndian);
 
     // Middle-endian (month, day, year), e.g. 04/05/03
-    format = format.replace( regexMiddleEndianLong, 'MM/DD/YYYY');
-    format = format.replace( regexMiddleEndianShort, 'MM/DD/YY');
+    format = format.replace( regexMiddleEndian, replaceMiddleEndian);
 
     // TIME
 
@@ -114,6 +108,54 @@
     format = format.replace(regexYearShort, 'YY');
 
     return format;
+  }
+
+  // 2014-01-01 → YYYY-MM-DD
+  // 14-01-01 → YY-MM-DD
+  // 14-1-1 → YY-M-D
+  // 2014-1-1 → YYYY-M-D
+  function replaceBigEndian (all, year, month, day) {
+    year = (year.length === 2) ? 'YY' : 'YYYY';
+    if (Math.min(day.length, month.length) === 1) {
+      day = 'D';
+      month = 'M';
+    } else {
+      day = 'DD';
+      month = 'MM';
+    }
+    return [year,month,day].join('-');
+  }
+
+  // 01.01.2014 → DD.MM.YYYY
+  // 01.01.14 → DD.MM.YY
+  // 1.1.14 → D.M.YY
+  // 1.1.2014 → D.M.YYYY
+  function replaceLittleEndian (all, day, month, year) {
+    year = (year.length === 2) ? 'YY' : 'YYYY';
+    if (Math.min(day.length, month.length) === 1) {
+      day = 'D';
+      month = 'M';
+    } else {
+      day = 'DD';
+      month = 'MM';
+    }
+    return [day,month,year].join('.');
+  }
+
+  // 01/01/2014 → DD/MM/YYYY
+  // 01/01/14 → DD/MM/YY
+  // 1/1/14 → D/M/YY
+  // 1/1/2014 → D/M/YYYY
+  function replaceMiddleEndian (all, month, day, year) {
+    year = (year.length === 2) ? 'YY' : 'YYYY';
+    if (Math.min(day.length, month.length) === 1) {
+      day = 'D';
+      month = 'M';
+    } else {
+      day = 'DD';
+      month = 'MM';
+    }
+    return [month,day,year].join('/');
   }
 
   return parseDateFormat;
