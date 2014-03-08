@@ -65,6 +65,7 @@
         parseTokenTimezone = /Z|[\+\-]\d\d:?\d\d/gi, // +00:00 -00:00 +0000 -0000 or Z
         parseTokenT = /T/i, // T (ISO separator)
         parseTokenTimestampMs = /[\+\-]?\d+(\.\d{1,3})?/, // 123456789 123456789.123
+        parseTokenOrdinal = /\d{1,2}/,
 
         //strict parsing regexes
         parseTokenOneDigit = /\d/, // 0 - 9
@@ -441,7 +442,7 @@
             mom.month(mom.month() + months * isAdding);
         }
         if (milliseconds && !ignoreUpdateOffset) {
-            moment.updateOffset(mom);
+            moment.updateOffset(mom, days || months);
         }
         // restore the minutes and hours after possibly changing dst
         if (days || months) {
@@ -559,6 +560,10 @@
 
     function daysInMonth(year, month) {
         return new Date(Date.UTC(year, month + 1, 0)).getUTCDate();
+    }
+
+    function weeksInYear(year, dow, doy) {
+        return weekOfYear(moment([year, 11, 31 + dow - doy]), dow, doy).week;
     }
 
     function daysInYear(year) {
@@ -1019,6 +1024,8 @@
         case 'e':
         case 'E':
             return parseTokenOneOrTwoDigits;
+        case 'Do':
+            return parseTokenOrdinal;
         default :
             a = new RegExp(regexpEscape(unescapeFormat(token.replace('\\', '')), "i"));
             return a;
@@ -1062,6 +1069,11 @@
         case 'DD' :
             if (input != null) {
                 datePartArray[DATE] = toInt(input);
+            }
+            break;
+        case 'Do' :
+            if (input != null) {
+                datePartArray[DATE] = toInt(parseInt(input, 10));
             }
             break;
         // DAY OF YEAR
@@ -1755,8 +1767,8 @@
         return m;
     };
 
-    moment.parseZone = function (input) {
-        return moment(input).parseZone();
+    moment.parseZone = function () {
+        return moment.apply(null, arguments).parseZone();
     };
 
     /************************************
@@ -1955,12 +1967,10 @@
                     }
                 }
 
-                dayOfMonth = this.date();
-                this.date(1);
-                this._d['set' + utc + 'Month'](input);
-                this.date(Math.min(dayOfMonth, this.daysInMonth()));
-
-                moment.updateOffset(this);
+                dayOfMonth = Math.min(this.date(),
+                        daysInMonth(this.year(), input));
+                this._d['set' + utc + 'Month'](input, dayOfMonth);
+                moment.updateOffset(this, true);
                 return this;
             } else {
                 return this._d['get' + utc + 'Month']();
@@ -2034,7 +2044,8 @@
             return other > this ? this : other;
         },
 
-        zone : function (input) {
+        zone : function (input, adjust) {
+            adjust = (adjust == null ? true : false);
             var offset = this._offset || 0;
             if (input != null) {
                 if (typeof input === "string") {
@@ -2045,7 +2056,7 @@
                 }
                 this._offset = input;
                 this._isUTC = true;
-                if (offset !== input) {
+                if (offset !== input && adjust) {
                     addOrSubtractDurationFromMoment(this, moment.duration(offset - input, 'm'), 1, true);
                 }
             } else {
@@ -2127,6 +2138,15 @@
             return input == null ? this.day() || 7 : this.day(this.day() % 7 ? input : input - 7);
         },
 
+        isoWeeksInYear : function () {
+            return weeksInYear(this.year(), 1, 4);
+        },
+
+        weeksInYear : function () {
+            var weekInfo = this._lang._week;
+            return weeksInYear(this.year(), weekInfo.dow, weekInfo.doy);
+        },
+
         get : function (units) {
             units = normalizeUnits(units);
             return this[units]();
@@ -2155,11 +2175,18 @@
 
     // helper for adding shortcuts
     function makeGetterAndSetter(name, key) {
-        moment.fn[name] = moment.fn[name + 's'] = function (input) {
+        // ignoreOffsetTransitions provides a hint to updateOffset to not
+        // change hours/minutes when crossing a tz boundary.  This is frequently
+        // desirable when modifying part of an existing moment object directly.
+        var defaultIgnoreOffsetTransitions = key === 'date' || key === 'month' || key === 'year';
+        moment.fn[name] = moment.fn[name + 's'] = function (input, ignoreOffsetTransitions) {
             var utc = this._isUTC ? 'UTC' : '';
+            if (ignoreOffsetTransitions == null) {
+                ignoreOffsetTransitions = defaultIgnoreOffsetTransitions;
+            }
             if (input != null) {
                 this._d['set' + utc + key](input);
-                moment.updateOffset(this);
+                moment.updateOffset(this, ignoreOffsetTransitions);
                 return this;
             } else {
                 return this._d['get' + utc + key]();
@@ -2167,7 +2194,8 @@
         };
     }
 
-    // loop through and add shortcuts (Month, Date, Hours, Minutes, Seconds, Milliseconds)
+    // loop through and add shortcuts (Date, Hours, Minutes, Seconds, Milliseconds)
+    // Month has a custom getter/setter.
     for (i = 0; i < proxyGettersAndSetters.length; i ++) {
         makeGetterAndSetter(proxyGettersAndSetters[i].toLowerCase().replace(/s$/, ''), proxyGettersAndSetters[i]);
     }
