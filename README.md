@@ -15,7 +15,7 @@ bower install --save moment-parseformat
 Install using [npm](https://npmjs.org/) for node.js:
 
 ```
-npm install --save moment.parseformat
+npm install --save moment-parseformat
 ```
 
 
@@ -25,7 +25,7 @@ Usage
 ```js
 var format = moment.parseFormat('Thursday, February 6th, 2014 9:20pm');
 // dddd, MMMM Do, YYYY h:mma
-moment.format(format); // format
+moment().format(format); // format
 ```
 
 Fine Print
