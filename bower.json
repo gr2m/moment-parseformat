@@ -22,7 +22,8 @@
   ],
   "devDependencies": {
     "bootstrap": "~3.1.0",
-    "bootstrap-editable-table": "~0.1.0"
+    "bootstrap-editable-table": "~0.1.0",
+    "qunit": "~1.14.0"
   },
   "dependencies": {
     "momentjs": "git://github.com/moment/moment.git#d3da8f7b504aee57fe610e1aa103c1702a7f945e"
