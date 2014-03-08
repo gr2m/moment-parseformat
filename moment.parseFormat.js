@@ -114,48 +114,55 @@
   // 14-01-01 → YY-MM-DD
   // 14-1-1 → YY-M-D
   // 2014-1-1 → YYYY-M-D
-  function replaceBigEndian (all, year, month, day) {
-    year = (year.length === 2) ? 'YY' : 'YYYY';
-    if (Math.min(day.length, month.length) === 1) {
-      day = 'D';
-      month = 'M';
-    } else {
-      day = 'DD';
-      month = 'MM';
-    }
-    return [year,month,day].join('-');
+  function replaceBigEndian (_, year, month, day) {
+    return replaceDayMonthYearNr({
+      day: day,
+      month: month,
+      year: year
+    }, ['year', 'month','day'], '-');
   }
 
   // 01.01.2014 → DD.MM.YYYY
   // 01.01.14 → DD.MM.YY
   // 1.1.14 → D.M.YY
   // 1.1.2014 → D.M.YYYY
-  function replaceLittleEndian (all, day, month, year) {
-    year = (year.length === 2) ? 'YY' : 'YYYY';
-    if (Math.min(day.length, month.length) === 1) {
-      day = 'D';
-      month = 'M';
-    } else {
-      day = 'DD';
-      month = 'MM';
-    }
-    return [day,month,year].join('.');
+  function replaceLittleEndian (_, day, month, year) {
+    return replaceDayMonthYearNr({
+      day: day,
+      month: month,
+      year: year
+    }, ['day','month','year'], '.');
   }
 
   // 01/01/2014 → DD/MM/YYYY
   // 01/01/14 → DD/MM/YY
   // 1/1/14 → D/M/YY
   // 1/1/2014 → D/M/YYYY
-  function replaceMiddleEndian (all, month, day, year) {
-    year = (year.length === 2) ? 'YY' : 'YYYY';
-    if (Math.min(day.length, month.length) === 1) {
-      day = 'D';
-      month = 'M';
+  function replaceMiddleEndian (_, month, day, year) {
+    return replaceDayMonthYearNr({
+      day: day,
+      month: month,
+      year: year
+    }, ['month','day','year'], '/');
+  }
+
+  //
+  // Replaces year to YYYY or YY, depending on length of match.
+  // Replacing day/month with one or two format (D or DD, M or MM),
+  // depending on whether on of the matches has a lenght of 1
+  //
+  function replaceDayMonthYearNr (parts, order, separator) {
+    parts.year = (parts.year.length === 2) ? 'YY' : 'YYYY';
+    if (Math.min(parts.day.length, parts.month.length) === 1) {
+      parts.day = 'D';
+      parts.month = 'M';
     } else {
-      day = 'DD';
-      month = 'MM';
+      parts.day = 'DD';
+      parts.month = 'MM';
     }
-    return [month,day,year].join('/');
+    return order.map(function(name) {
+      return parts[name];
+    }).join(separator);
   }
 
   return parseDateFormat;
