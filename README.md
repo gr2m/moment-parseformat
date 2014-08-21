@@ -19,7 +19,7 @@ npm install --save moment-parseformat
 ```
 
 
-Usage
+Browser Usage
 -----
 
 ```js
@@ -27,6 +27,18 @@ var format = moment.parseFormat('Thursday, February 6th, 2014 9:20pm');
 // dddd, MMMM Do, YYYY h:mma
 moment().format(format); // format
 ```
+
+Node / CommonJS Usage
+-----
+```js
+var moment  = require 'moment'
+var parseFormat = require('moment-parseformat')
+
+var format = parseFormat('Thursday, February 6th, 2014 9:20pm');
+// dddd, MMMM Do, YYYY h:mma
+moment().format(format); // format
+```
+
 
 Fine Print
 ----------
