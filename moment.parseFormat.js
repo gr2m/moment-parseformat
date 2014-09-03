@@ -55,7 +55,7 @@
 
     // default options
     options = options || {};
-    options.preferedOrder = options.preferedOrder || defaultOrder;
+    options.preferredOrder = options.preferredOrder || defaultOrder;
 
     // escape filling words
     format = format.replace(regexFillingWords, '[$1]');
@@ -119,13 +119,13 @@
     var hasSingleDigit = Math.min(first.length, second.length, third.length) === 1;
     var hasQuadDigit = Math.max(first.length, second.length, third.length) === 4;
     var index = -1;
-    var preferedOrder = typeof options.preferedOrder === 'string' ? options.preferedOrder : options.preferedOrder[separator];
+    var preferredOrder = typeof options.preferredOrder === 'string' ? options.preferredOrder : options.preferredOrder[separator];
 
     first = parseInt(first, 10);
     second = parseInt(second, 10);
     third = parseInt(third, 10);
     parts = [first, second, third];
-    preferedOrder = preferedOrder.toUpperCase();
+    preferredOrder = preferredOrder.toUpperCase();
 
     // If first is a year, order will always be Year-Month-Day
     if (first > 31) {
@@ -159,10 +159,10 @@
       }
     }
 
-    // if we had no luck until here, we use the prefered order
-    parts[preferedOrder.indexOf('D')] = hasSingleDigit ? 'D' : 'DD';
-    parts[preferedOrder.indexOf('M')] = hasSingleDigit ? 'M' : 'MM';
-    parts[preferedOrder.indexOf('Y')] = hasQuadDigit ? 'YYYY' : 'YY';
+    // if we had no luck until here, we use the preferred order
+    parts[preferredOrder.indexOf('D')] = hasSingleDigit ? 'D' : 'DD';
+    parts[preferredOrder.indexOf('M')] = hasSingleDigit ? 'M' : 'MM';
+    parts[preferredOrder.indexOf('Y')] = hasQuadDigit ? 'YYYY' : 'YY';
 
     return parts.join(separator);
   }

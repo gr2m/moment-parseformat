@@ -47,18 +47,18 @@ Options
 Options can be passed as 2nd parameter
 
 
-#### preferedOrder
+#### preferredOrder
 Type: `Object` or `String`
 
 `parseFormat` tries to figure out the the order of day/month/year by itself
 if it finds 3 numbers separated by `.`, `-` or `/`. But if it can't, it will fallback
-to `preferedOrder`, which can either be set as an object to differentiate by separator,
+to `preferredOrder`, which can either be set as an object to differentiate by separator,
 or as a simple string.
 
 Default value:
 
 ```js
-preferedOrder: {
+preferredOrder: {
   '/': 'MDY',
   '.': 'DMY',
   '-': 'YMD'
@@ -68,17 +68,17 @@ preferedOrder: {
 Usage
 
 ```js
-parseFormat('10.10.2010', {preferedOrder: 'DMY'});
+parseFormat('10.10.2010', {preferredOrder: 'DMY'});
 // ☛ DD.MM.YYYY
-parseFormat('10.10.2010', {preferedOrder: 'MDY'});
+parseFormat('10.10.2010', {preferredOrder: 'MDY'});
 // ☛ MM.DD.YYYY
-parseFormat('10.10.2010', {preferedOrder: {
+parseFormat('10.10.2010', {preferredOrder: {
   '/': 'MDY',
   '.': 'DMY',
   '-': 'YMD'
 }});
 // ☛ MM.DD.YYYY
-parseFormat('10/10/2010', {preferedOrder: {
+parseFormat('10/10/2010', {preferredOrder: {
   '/': 'MDY',
   '.': 'DMY',
   '-': 'YMD'
