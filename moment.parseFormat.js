@@ -114,7 +114,7 @@
   // if we can't find an endian based on the separator, but
   // there still is a short date with day, month & year,
   // we try to make a smart decision to identify the order
-  function replaceEndian(options, matchedPart, first, separator, second, third, start, original) {
+  function replaceEndian(options, matchedPart, first, separator, second, third) {
     var parts;
     var hasSingleDigit = Math.min(first.length, second.length, third.length) === 1;
     var hasQuadDigit = Math.max(first.length, second.length, third.length) === 4;
@@ -125,6 +125,7 @@
     second = parseInt(second, 10);
     third = parseInt(third, 10);
     parts = [first, second, third];
+    preferedOrder = preferedOrder.toUpperCase();
 
     // If first is a year, order will always be Year-Month-Day
     if (first > 31) {
