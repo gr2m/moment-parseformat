@@ -1,4 +1,5 @@
 /* global moment, test, equal */
+
 test('standard cases', function() {
   'use strict';
 
@@ -20,4 +21,6 @@ test('GitHub issues', function() {
   // https://github.com/gr2m/moment.parseFormat/issues/4
   equal( moment.parseFormat('1.1.2010'), 'D.M.YYYY', '#4 1.1.2010 → D.M.YYYY' );
 
+  // https://github.com/gr2m/moment.parseFormat/issues/11
+  equal( moment.parseFormat('9-17-1980'), 'M-D-YYYY', '#11 9-17-1980 → M-D-YYYY' );
 });
