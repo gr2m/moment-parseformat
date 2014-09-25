@@ -7,7 +7,7 @@ test('standard cases', function() {
   equal( moment.parseFormat('Thursday, February 6th, 2014 9:20pm'), 'dddd, MMMM Do, YYYY h:mma', 'Thursday, February 6th, 2014 9:20pm → dddd, MMMM Do, YYYY h:mma' );
   equal( moment.parseFormat('23:20'), 'H:mm', '23:20 → H:mm' );
   equal( moment.parseFormat('02/03/14'), 'MM/DD/YY', '02/03/14 → MM/DD/YY' );
-  equal( moment.parseFormat('2014-01-10 20:00:15'), 'YYYY-MM-DD HH:mm:ss', '2014-01-10 20:00:15 → YYYY-MM-DD H:mm:ss' );
+  equal( moment.parseFormat('2014-01-10 20:00:15'), 'YYYY-MM-DD H:mm:ss', '2014-01-10 20:00:15 → YYYY-MM-DD H:mm:ss' );
   equal( moment.parseFormat('Thursday at 9:20pm'), 'dddd [at] h:mma', 'Thursday at 9:20pm → dddd [at] h:mma' );
 });
 
@@ -25,5 +25,9 @@ test('GitHub issues', function() {
   equal( moment.parseFormat('9-17-1980'), 'M-D-YYYY', '#11 9-17-1980 → M-D-YYYY' );
 
   // https://github.com/gr2m/moment.parseFormat/issues/11
-  equal( moment.parseFormat('2014-09-04T01:20:28+02:00'), 'YYYY-MM-DDTHH:mm:ssZ', '#5 2014-02-02T10:11:58+00:00" → YYYY-MM-DDTHH:mm:ssZ' );
+  equal( moment.parseFormat('2014-09-04T01:20:28+02:00'), 'YYYY-MM-DDTHH:mm:ssZ', '#5 2014-02-02T10:11:58+00:00 → YYYY-MM-DDTHH:mm:ssZ' );
+
+  // https://github.com/gr2m/moment.parseFormat/issues/14
+  equal( moment.parseFormat('August 26, 2014 02:30pm'), 'MMMM D, YYYY hh:mma', '#5 August 26, 2014 02:30pm → MMMM D, YYYY hh:mma' );
+  equal( moment.parseFormat('August 06, 2014'), 'MMMM DD, YYYY', '#5 August 06, 2014 → MMMM DD, YYYY' );
 });

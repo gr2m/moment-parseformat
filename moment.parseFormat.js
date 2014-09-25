@@ -32,13 +32,19 @@
 
   var regexTimezone = /\+\d\d:\d\d$/
   var amOrPm = '('+[amDesignator,pmDesignator].join('|')+')';
+  var regexHoursWithLeadingZeroDigitMinutesSecondsAmPm = new RegExp( '0\\d\\:\\d{1,2}\\:\\d{1,2}(\\s*)' + amOrPm,  'i' );
+  var regexHoursWithLeadingZeroDigitMinutesAmPm = new RegExp( '0\\d\\:\\d{1,2}(\\s*)' + amOrPm,  'i' );
+  var regexHoursWithLeadingZeroDigitAmPm = new RegExp( '0\\d(\\s*)' + amOrPm,  'i' );
   var regexHoursMinutesSecondsAmPm = new RegExp( '\\d{1,2}\\:\\d{1,2}\\:\\d{1,2}(\\s*)' + amOrPm,  'i' );
   var regexHoursMinutesAmPm = new RegExp( '\\d{1,2}\\:\\d{1,2}(\\s*)' + amOrPm,  'i' );
   var regexHoursAmPm = new RegExp( '\\d{1,2}(\\s*)' + amOrPm,  'i' );
 
+  var regexHoursWithLeadingZeroMinutesSeconds = /0\d:\d{2}:\d{2}/;
+  var regexHoursWithLeadingZeroMinutes = /0\d:\d{2}/;
   var regexHoursMinutesSeconds = /\d{1,2}:\d{2}:\d{2}/;
   var regexHoursMinutes = /\d{1,2}:\d{2}/;
   var regexYearLong = /\d{4}/;
+  var regexDayLeadingZero = /0\d/;
   var regexDay = /\d{1,2}/;
   var regexYearShort = /\d{2}/;
 
@@ -86,18 +92,27 @@
     // TIME
 
     // timezone +02:00 ☛ Z
-    // 10:30:20pm ☛ h:mm:ssa
     format = format.replace(regexTimezone, 'Z');
 
+    // 05:30:20pm ☛ hh:mm:ssa
+    format = format.replace(regexHoursWithLeadingZeroDigitMinutesSecondsAmPm, 'hh:mm:ss$1a');
+    // 10:30:20pm ☛ h:mm:ssa
+    format = format.replace(regexHoursMinutesSecondsAmPm, 'h:mm:ss$1a');
+    // 05:30pm ☛ hh:mma
+    format = format.replace(regexHoursWithLeadingZeroDigitMinutesAmPm, 'hh:mm$1a');
     // 10:30pm ☛ h:mma
     format = format.replace(regexHoursMinutesAmPm, 'h:mm$1a');
+    // 05pm ☛ hha
+    format = format.replace(regexHoursWithLeadingZeroDigitAmPm, 'hh$1a');
     // 10pm ☛ ha
     format = format.replace(regexHoursAmPm, 'h$1a');
-
-    // 10:30:20 ☛ HH:mm:ss
-    format = format.replace(regexHoursMinutesSeconds, 'HH:mm:ss');
-
-    // 10:30 ☛ H:mm
+    // 05:30:20 ☛ HH:mm:ss
+    format = format.replace(regexHoursWithLeadingZeroMinutesSeconds, 'HH:mm:ss');
+    // 10:30:20 ☛ H:mm:ss
+    format = format.replace(regexHoursMinutesSeconds, 'H:mm:ss');
+    // 05:30 ☛ H:mm
+    format = format.replace(regexHoursWithLeadingZeroMinutes, 'HH:mm');
+    // 10:30 ☛ HH:mm
     format = format.replace(regexHoursMinutes, 'H:mm');
 
     // do we still have numbers left?
@@ -106,6 +121,7 @@
     format = format.replace(regexYearLong, 'YYYY');
 
     // now, the next number, if existing, must be a day
+    format = format.replace(regexDayLeadingZero, 'DD');
     format = format.replace(regexDay, 'D');
 
     // last but not least, there could still be a year left
