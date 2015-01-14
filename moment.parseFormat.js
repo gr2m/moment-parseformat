@@ -169,12 +169,24 @@
 
       // ... try to find day in first and second.
       // If found, the remaining part is the month.
-      index = first > 12 ? 0 : second > 12 ? 1 : -1;
-      if (index !== -1) {
-        parts[index] = hasSingleDigit ? 'D' : 'DD';
-        index = index === 0 ? 1 : 0;
-        parts[index] = hasSingleDigit ? 'M' : 'MM';
-        return parts.join(separator);
+      switch (true) {
+        case first > 12:
+          parts[0] = hasSingleDigit ? 'D' : 'DD';
+          parts[1] = hasSingleDigit ? 'M' : 'MM';
+          return parts.join(separator);
+        case second > 12:
+          parts[0] = hasSingleDigit ? 'M' : 'MM';
+          parts[1] = hasSingleDigit ? 'D' : 'DD';
+          return parts.join(separator);
+        default: // sorry
+          if (preferredOrder[0] === 'M') {
+            parts[0] = hasSingleDigit ? 'M' : 'MM';
+            parts[1] = hasSingleDigit ? 'D' : 'DD';
+            return parts.join(separator);
+          }
+          parts[0] = hasSingleDigit ? 'D' : 'DD';
+          parts[1] = hasSingleDigit ? 'M' : 'MM';
+          return parts.join(separator);
       }
     }
 

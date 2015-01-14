@@ -30,4 +30,12 @@ test('GitHub issues', function() {
   // https://github.com/gr2m/moment.parseFormat/issues/14
   equal( moment.parseFormat('August 26, 2014 02:30pm'), 'MMMM D, YYYY hh:mma', '#5 August 26, 2014 02:30pm → MMMM D, YYYY hh:mma' );
   equal( moment.parseFormat('August 06, 2014'), 'MMMM DD, YYYY', '#5 August 06, 2014 → MMMM DD, YYYY' );
+
+  // https://github.com/gr2m/moment.parseFormat/issues/12
+  equal( moment.parseFormat('3-1-81'), 'D-M-YY', '#12 3-1-81 → D-M-YY' )
+
+  // https://github.com/gr2m/moment.parseFormat/issues/15
+  equal( moment.parseFormat('01-01-2015'), 'DD-MM-YYYY', '#15 01-01-2015 → DD-MM-YYYY' );
+  equal( moment.parseFormat('01-01-2015', {preferredOrder: 'MDY'}), 'MM-DD-YYYY', '#15 01-01-2015 (preferredOrder: MDY) → MM-DD-YYYY' );;
 });
+
