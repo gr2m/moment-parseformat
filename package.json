@@ -4,7 +4,7 @@
   "description": "A moment.js plugin to extract the format of a date/time string",
   "main": "moment.parseFormat.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "grunt test"
   },
   "repository": {
     "type": "git",

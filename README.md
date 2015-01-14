@@ -3,6 +3,11 @@ moment.parseFormat – a moment.js plugin
 
 > A moment.js plugin to extract the format of a date/time string
 
+[![Build Status][travis-image]][travis-url]
+
+[travis-url]: https://travis-ci.org/gr2m/moment.parseFormat
+[travis-image]: https://travis-ci.org/gr2m/moment.parseFormat?branch=master
+
 Installation
 ------------
 
