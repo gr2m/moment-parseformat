@@ -6,7 +6,7 @@ moment.parseFormat – a moment.js plugin
 [![Build Status][travis-image]][travis-url]
 
 [travis-url]: https://travis-ci.org/gr2m/moment.parseFormat
-[travis-image]: https://travis-ci.org/gr2m/moment.parseFormat?branch=master
+[travis-image]: https://api.travis-ci.org/gr2m/moment.parseFormat.png?branch=gh-pages
 
 Installation
 ------------
