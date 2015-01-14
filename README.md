@@ -6,6 +6,13 @@ moment.parseFormat – a moment.js plugin
 Installation
 ------------
 
+Load via script tag
+
+```html
+<script src="moment.js"></script>
+<script src="moment.parseFormat.js"></script>
+```
+
 Install using [bower](http://bower.io/) for usage in browser:
 
 ```
