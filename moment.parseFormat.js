@@ -100,17 +100,17 @@
     format = format.replace(regexTimezone, 'Z');
 
     // 05:30:20pm ☛ hh:mm:ssa
-    format = format.replace(regexHoursWithLeadingZeroDigitMinutesSecondsAmPm, appendAMPMCase(format, 'hh:mm:ss$1'));
+    format = format.replace(regexHoursWithLeadingZeroDigitMinutesSecondsAmPm, 'hh:mm:ss$1');
     // 10:30:20pm ☛ h:mm:ssa
-    format = format.replace(regexHoursMinutesSecondsAmPm, appendAMPMCase(format, 'h:mm:ss$1'));
+    format = format.replace(regexHoursMinutesSecondsAmPm, 'h:mm:ss$1');
     // 05:30pm ☛ hh:mma
-    format = format.replace(regexHoursWithLeadingZeroDigitMinutesAmPm, appendAMPMCase(format, 'hh:mm$1'));
+    format = format.replace(regexHoursWithLeadingZeroDigitMinutesAmPm, 'hh:mm$1');
     // 10:30pm ☛ h:mma
-    format = format.replace(regexHoursMinutesAmPm, appendAMPMCase(format, 'h:mm$1'));
+    format = format.replace(regexHoursMinutesAmPm, 'h:mm$1');
     // 05pm ☛ hha
-    format = format.replace(regexHoursWithLeadingZeroDigitAmPm, appendAMPMCase(format, 'hh$1'));
+    format = format.replace(regexHoursWithLeadingZeroDigitAmPm, 'hh$1');
     // 10pm ☛ ha
-    format = format.replace(regexHoursAmPm, appendAMPMCase(format, 'h$1'));
+    format = format.replace(regexHoursAmPm, 'h$1');
     // 05:30:20 ☛ HH:mm:ss
     format = format.replace(regexHoursWithLeadingZeroMinutesSeconds, 'HH:mm:ss');
     // 10:30:20 ☛ H:mm:ss
@@ -119,6 +119,13 @@
     format = format.replace(regexHoursWithLeadingZeroMinutes, 'HH:mm');
     // 10:30 ☛ HH:mm
     format = format.replace(regexHoursMinutes, 'H:mm');
+
+    // Check if AM and determine the case of 'a' we need
+    if(regexUpperAmOrPm.test(dateString)) {
+      format += 'A';
+    } else if(regexLowerAmOrPm.test(dateString)) {
+      format += 'a';
+    }
 
     // do we still have numbers left?
 
@@ -201,20 +208,6 @@
     parts[preferredOrder.indexOf('Y')] = hasQuadDigit ? 'YYYY' : 'YY';
 
     return parts.join(separator);
-  }
-
-  // For the time formatting, here we figure out if the the time has an
-  // uppercase AM/PM or a lower case AM/PM. We then add a "A" or a "a"
-  // based on the case.
-  function appendAMPMCase(date, replaceFormat) {
-      if(regexUpperAmOrPm.test(date)) {
-          return replaceFormat + 'A';
-      } else if(regexLowerAmOrPm.test(date)) {
-          return replaceFormat + 'a';
-      }
-
-      // None of the cases matched. Let's just return the original format.
-      return replaceFormat;
   }
 
   return parseDateFormat;
