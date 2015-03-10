@@ -38,6 +38,10 @@ test('GitHub issues', function() {
   equal( moment.parseFormat('01-01-2015'), 'DD-MM-YYYY', '#15 01-01-2015 → DD-MM-YYYY' );
   equal( moment.parseFormat('01-01-2015', {preferredOrder: 'MDY'}), 'MM-DD-YYYY', '#15 01-01-2015 (preferredOrder: MDY) → MM-DD-YYYY' );
 
+  // https://github.com/gr2m/moment.parseFormat/pull/21
+  equal( moment.parseFormat('10/8/2014 5:08:35 PM'), 'M/D/YYYY h:mm:ss A', '#20 10/8/2014 5:08:35 PM → M/D/YYYY h:mm:ss A' );
+  equal( moment.parseFormat('10/8/2014 5:08:35am'), 'M/D/YYYY h:mm:ssa', '#20 10/8/2014 5:08:35 am → M/D/YYYY h:mm:ssa' );
+
   // https://github.com/gr2m/moment.parseFormat/issues/23
   equal( moment.parseFormat('2014-23-04T01:20:28.888+02:00'), 'YYYY-MM-DDTHH:mm:ss.SSSZ', '#23 2014-23-04T01:20:28.888+02:00 → YYYY-MM-DDTHH:mm:ss.SSSZ' );
   equal( moment.parseFormat('2014-09-04T01:20:28.888+02:00'), 'YYYY-MM-DDTHH:mm:ss.SSSZ', '#23 2014-09-04T01:20:28.888+02:00 → YYYY-MM-DDTHH:mm:ss.SSSZ' );
