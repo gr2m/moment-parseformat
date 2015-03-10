@@ -20,6 +20,8 @@
   var abbreviatedMonthNames =  [ 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
   var amDesignator =  'AM';
   var pmDesignator =  'PM';
+  var lowerAMDesignator = 'am';
+  var lowerPMDesignator = 'pm';
 
   var regexDayNames = new RegExp( dayNames.join('|'), 'i' );
   var regexAbbreviatedDayNames = new RegExp( abbreviatedDayNames.join('|'), 'i' );
@@ -32,6 +34,9 @@
 
   var regexTimezone = /\+\d\d:\d\d$/
   var amOrPm = '('+[amDesignator,pmDesignator].join('|')+')';
+  var lowerAmOrPm = '('+[lowerAMDesignator,lowerPMDesignator].join('|')+')';
+  var regexLowerAmOrPm = new RegExp(lowerAmOrPm);
+  var regexUpperAmOrPm = new RegExp(amOrPm);
   var regexHoursWithLeadingZeroDigitMinutesSecondsAmPm = new RegExp( '0\\d\\:\\d{1,2}\\:\\d{1,2}(\\s*)' + amOrPm,  'i' );
   var regexHoursWithLeadingZeroDigitMinutesAmPm = new RegExp( '0\\d\\:\\d{1,2}(\\s*)' + amOrPm,  'i' );
   var regexHoursWithLeadingZeroDigitAmPm = new RegExp( '0\\d(\\s*)' + amOrPm,  'i' );
@@ -95,17 +100,17 @@
     format = format.replace(regexTimezone, 'Z');
 
     // 05:30:20pm ☛ hh:mm:ssa
-    format = format.replace(regexHoursWithLeadingZeroDigitMinutesSecondsAmPm, 'hh:mm:ss$1a');
+    format = format.replace(regexHoursWithLeadingZeroDigitMinutesSecondsAmPm, appendAMPMCase(format, 'hh:mm:ss$1'));
     // 10:30:20pm ☛ h:mm:ssa
-    format = format.replace(regexHoursMinutesSecondsAmPm, 'h:mm:ss$1a');
+    format = format.replace(regexHoursMinutesSecondsAmPm, appendAMPMCase(format, 'h:mm:ss$1'));
     // 05:30pm ☛ hh:mma
-    format = format.replace(regexHoursWithLeadingZeroDigitMinutesAmPm, 'hh:mm$1a');
+    format = format.replace(regexHoursWithLeadingZeroDigitMinutesAmPm, appendAMPMCase(format, 'hh:mm$1'));
     // 10:30pm ☛ h:mma
-    format = format.replace(regexHoursMinutesAmPm, 'h:mm$1a');
+    format = format.replace(regexHoursMinutesAmPm, appendAMPMCase(format, 'h:mm$1'));
     // 05pm ☛ hha
-    format = format.replace(regexHoursWithLeadingZeroDigitAmPm, 'hh$1a');
+    format = format.replace(regexHoursWithLeadingZeroDigitAmPm, appendAMPMCase(format, 'hh$1'));
     // 10pm ☛ ha
-    format = format.replace(regexHoursAmPm, 'h$1a');
+    format = format.replace(regexHoursAmPm, appendAMPMCase(format, 'h$1'));
     // 05:30:20 ☛ HH:mm:ss
     format = format.replace(regexHoursWithLeadingZeroMinutesSeconds, 'HH:mm:ss');
     // 10:30:20 ☛ H:mm:ss
@@ -196,6 +201,20 @@
     parts[preferredOrder.indexOf('Y')] = hasQuadDigit ? 'YYYY' : 'YY';
 
     return parts.join(separator);
+  }
+
+  // For the time formatting, here we figure out if the the time has an
+  // uppercase AM/PM or a lower case AM/PM. We then add a "A" or a "a"
+  // based on the case.
+  function appendAMPMCase(date, replaceFormat) {
+      if(regexUpperAmOrPm.test(date)) {
+          return replaceFormat + 'A';
+      } else if(regexLowerAmOrPm.test(date)) {
+          return replaceFormat + 'a';
+      }
+
+      // None of the cases matched. Let's just return the original format.
+      return replaceFormat;
   }
 
   return parseDateFormat;
