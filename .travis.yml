@@ -1,11 +1,41 @@
 language: node_js
 node_js:
 - '0.10'
-before_install:
-- npm install -g grunt-cli
-
+sudo: false
+cache:
+  directories:
+  - node_modules
+notifications:
+  email: false
 branches:
   only:
   - master
   - gh-pages
   - /^pull*$/
+
+before_install:
+- npm install -g grunt-cli
+# See https://github.com/boennemann/semantic-release/issues/18
+before_deploy:
+- npm config set spin false --global
+env:
+  # Get your token here: https://github.com/settings/tokens/new
+  # Grant the token repo/public_repo scope (all others can be deselected)
+  # You should encrypt this:
+  # `travis encrypt GH_TOKEN=<token> --add`
+  global:
+    secure: ZieFcrMV9IfeZ0LYywo8tR610nqsWeRkyf9fKYB4XAmaUy8q4UR0XmFaPpnQpovJfsCt+SB2TJa7TT1HO+EgkPJTlhqm8WO91Oh4kiXZeA9e6QOUj3auJUVgOZhQKauq1p0d9h6g/Uke3atNJKilbPl+khbnYcByAhLDUk0cn4M=
+deploy:
+  provider: npm
+  email: gregor@martynus.net
+  # Very important. Don't forget this one.
+  skip_cleanup: true
+  # Travis currently only supports the old auth key format.
+  # Do `echo -n "<username>:<password>" | base64` to get it.
+  # You should encrypt this:
+  # `travis encrypt $(echo -n "<username>:<password>" | base64) --add deploy.api_key`
+  api_key:
+    secure: DuR02uiIsxH7hc/49gS8Tgi1uNsg5ruvHJGsTSvnl5BSzGMxWWSy8Ofmrvm7jT6DISJVIGFdeq5bOjA8mp+FsCoAi66qYa+j6bzb5sty6QItTqsSbn3XkJ15GqPOeDniKYfODB3w148OfwMoT6xTpMTlPKZJluJ0K83rVNkdLTA=
+  on:
+    branch: gh-pages
+    repo: gr2m/moment.parseFormat
