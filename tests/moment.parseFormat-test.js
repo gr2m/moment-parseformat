@@ -32,10 +32,15 @@ test('GitHub issues', function() {
   equal( moment.parseFormat('August 06, 2014'), 'MMMM DD, YYYY', '#5 August 06, 2014 → MMMM DD, YYYY' );
 
   // https://github.com/gr2m/moment.parseFormat/issues/12
-  equal( moment.parseFormat('3-1-81'), 'D-M-YY', '#12 3-1-81 → D-M-YY' )
+  equal( moment.parseFormat('3-1-81'), 'D-M-YY', '#12 3-1-81 → D-M-YY' );
 
   // https://github.com/gr2m/moment.parseFormat/issues/15
   equal( moment.parseFormat('01-01-2015'), 'DD-MM-YYYY', '#15 01-01-2015 → DD-MM-YYYY' );
-  equal( moment.parseFormat('01-01-2015', {preferredOrder: 'MDY'}), 'MM-DD-YYYY', '#15 01-01-2015 (preferredOrder: MDY) → MM-DD-YYYY' );;
-});
+  equal( moment.parseFormat('01-01-2015', {preferredOrder: 'MDY'}), 'MM-DD-YYYY', '#15 01-01-2015 (preferredOrder: MDY) → MM-DD-YYYY' );
 
+  // https://github.com/gr2m/moment.parseFormat/issues/23
+  equal( moment.parseFormat('2014-23-04T01:20:28.888+02:00'), 'YYYY-MM-DDTHH:mm:ss.SSSZ', '#23 2014-23-04T01:20:28.888+02:00 → YYYY-MM-DDTHH:mm:ss.SSSZ' );
+  equal( moment.parseFormat('2014-09-04T01:20:28.888+02:00'), 'YYYY-MM-DDTHH:mm:ss.SSSZ', '#23 2014-09-04T01:20:28.888+02:00 → YYYY-MM-DDTHH:mm:ss.SSSZ' );
+  equal( moment.parseFormat('2014-09-04T01:20:28.888-02:00'), 'YYYY-MM-DDTHH:mm:ss.SSSZ', '#23 2014-09-04T01:20:28.888-02:00 → YYYY-MM-DDTHH:mm:ss.SSSZ' );
+  equal( moment.parseFormat('2014-09-04T01:20:28.888Z'), 'YYYY-MM-DDTHH:mm:ss.SSSZ', '#23 2014-02-02T10:11:58.888Z → YYYY-MM-DDTHH:mm:ss.SSSZ' );
+});

@@ -30,7 +30,7 @@
   var regexFirstSecondThirdFourth = /(\d+)(st|nd|rd|th)\b/i;
   var regexEndian = /(\d{1,4})([\/\.\-])(\d{1,2})[\/\.\-](\d{1,4})/;
 
-  var regexTimezone = /\+\d\d:\d\d$/
+  var regexTimezone = /((\+|\-)\d\d:\d\d)$/;
   var amOrPm = '('+[amDesignator,pmDesignator].join('|')+')';
   var regexHoursWithLeadingZeroDigitMinutesSecondsAmPm = new RegExp( '0\\d\\:\\d{1,2}\\:\\d{1,2}(\\s*)' + amOrPm,  'i' );
   var regexHoursWithLeadingZeroDigitMinutesAmPm = new RegExp( '0\\d\\:\\d{1,2}(\\s*)' + amOrPm,  'i' );
@@ -39,6 +39,7 @@
   var regexHoursMinutesAmPm = new RegExp( '\\d{1,2}\\:\\d{1,2}(\\s*)' + amOrPm,  'i' );
   var regexHoursAmPm = new RegExp( '\\d{1,2}(\\s*)' + amOrPm,  'i' );
 
+  var regexISO8601HoursWithLeadingZeroMinutesSecondsMilliseconds = /\d{2}:\d{2}:\d{2}\.\d{3}/;
   var regexHoursWithLeadingZeroMinutesSeconds = /0\d:\d{2}:\d{2}/;
   var regexHoursWithLeadingZeroMinutes = /0\d:\d{2}/;
   var regexHoursMinutesSeconds = /\d{1,2}:\d{2}:\d{2}/;
@@ -93,7 +94,8 @@
 
     // timezone +02:00 ☛ Z
     format = format.replace(regexTimezone, 'Z');
-
+    // 23:39:43.331 ☛ 'HH:mm:ss.SS'
+    format = format.replace(regexISO8601HoursWithLeadingZeroMinutesSecondsMilliseconds, 'HH:mm:ss.SSS');
     // 05:30:20pm ☛ hh:mm:ssa
     format = format.replace(regexHoursWithLeadingZeroDigitMinutesSecondsAmPm, 'hh:mm:ss$1a');
     // 10:30:20pm ☛ h:mm:ssa
