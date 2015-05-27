@@ -35,7 +35,7 @@ deploy:
   # You should encrypt this:
   # `travis encrypt $(echo -n "<username>:<password>" | base64) --add deploy.api_key`
   api_key:
-    secure: DuR02uiIsxH7hc/49gS8Tgi1uNsg5ruvHJGsTSvnl5BSzGMxWWSy8Ofmrvm7jT6DISJVIGFdeq5bOjA8mp+FsCoAi66qYa+j6bzb5sty6QItTqsSbn3XkJ15GqPOeDniKYfODB3w148OfwMoT6xTpMTlPKZJluJ0K83rVNkdLTA=
+    secure: bFe2eC7riPYMDx1m0IDmwxQ9NtMO1Qe3z4eJBYnb4IQG04IDh1ssvAdc+ChXvvDWE16pjHqqNpqxknAC3Huk9ZFRyFHmqXnIhTvuB7XBbHQa+Jx3Joz6r9GduR0AxFojd6h2XDV9UMGYFNvIDzyKVLKu3D0EonT/BEOXZ/Mn0bQ=
   on:
     branch: gh-pages
     repo: gr2m/moment.parseFormat
