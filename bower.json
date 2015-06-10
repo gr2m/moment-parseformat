@@ -25,5 +25,7 @@
     "bootstrap-editable-table": "~0.1.0",
     "qunit": "~1.14.0"
   },
-  "dependencies": {}
+  "dependencies": {
+    "moment": "~2.10.3"
+  }
 }
