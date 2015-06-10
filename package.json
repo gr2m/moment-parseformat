@@ -24,7 +24,7 @@
   },
   "homepage": "http://gr2m.github.io/moment.parseFormat",
   "dependencies": {
-    "moment": "git://github.com/moment/moment.git#d3da8f7b504aee57fe610e1aa103c1702a7f945e"
+    "moment": "^2.10.3"
   },
   "devDependencies": {
     "grunt": "~0.4.2",
