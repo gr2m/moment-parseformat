@@ -56,6 +56,9 @@
 
   var regexFillingWords = /\b(at)\b/i;
 
+  var regexUnixMillisecondTimestamp = /\d{13}/;
+  var regexUnixTimestamp = /\d{10}/;
+
   // option defaults
   var defaultOrder = {
     '/': 'MDY',
@@ -69,6 +72,11 @@
     // default options
     options = options || {};
     options.preferredOrder = options.preferredOrder || defaultOrder;
+
+    // Unix Millisecond Timestamp ☛ x
+    format = format.replace(regexUnixMillisecondTimestamp, 'x');
+    // Unix Timestamp ☛ X
+    format = format.replace(regexUnixTimestamp, 'X');
 
     // escape filling words
     format = format.replace(regexFillingWords, '[$1]');
