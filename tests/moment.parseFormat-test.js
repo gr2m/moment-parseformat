@@ -47,4 +47,8 @@ test('GitHub issues', function() {
   equal( moment.parseFormat('2014-09-04T01:20:28.888+02:00'), 'YYYY-MM-DDTHH:mm:ss.SSSZ', '#23 2014-09-04T01:20:28.888+02:00 → YYYY-MM-DDTHH:mm:ss.SSSZ' );
   equal( moment.parseFormat('2014-09-04T01:20:28.888-02:00'), 'YYYY-MM-DDTHH:mm:ss.SSSZ', '#23 2014-09-04T01:20:28.888-02:00 → YYYY-MM-DDTHH:mm:ss.SSSZ' );
   equal( moment.parseFormat('2014-09-04T01:20:28.888Z'), 'YYYY-MM-DDTHH:mm:ss.SSSZ', '#23 2014-02-02T10:11:58.888Z → YYYY-MM-DDTHH:mm:ss.SSSZ' );
+
+  // https://github.com/gr2m/moment.parseFormat/pull/29
+  equal( moment.parseFormat('1434575583'), 'X', '1434575583  → X')
+  equal( moment.parseFormat('1318781876406'), 'x', '1318781876406  → x')
 });
