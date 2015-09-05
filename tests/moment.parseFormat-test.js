@@ -6,19 +6,17 @@ var moment = require('moment')
 moment.parseFormat = require('../moment.parseFormat')
 
 test('standard cases', function (t) {
-  t.plan(6)
-
   t.equal(moment.parseFormat('Thursday 9:20pm'), 'dddd h:mma', 'Thursday 9:20pm → dddd h:mma')
   t.equal(moment.parseFormat('Thursday, February 6th, 2014 9:20pm'), 'dddd, MMMM Do, YYYY h:mma', 'Thursday, February 6th, 2014 9:20pm → dddd, MMMM Do, YYYY h:mma')
   t.equal(moment.parseFormat('23:20'), 'H:mm', '23:20 → H:mm')
   t.equal(moment.parseFormat('02/03/14'), 'MM/DD/YY', '02/03/14 → MM/DD/YY')
   t.equal(moment.parseFormat('2014-01-10 20:00:15'), 'YYYY-MM-DD H:mm:ss', '2014-01-10 20:00:15 → YYYY-MM-DD H:mm:ss')
   t.equal(moment.parseFormat('Thursday at 9:20pm'), 'dddd [at] h:mma', 'Thursday at 9:20pm → dddd [at] h:mma')
+
+  t.end()
 })
 
 test('GitHub issues', function (t) {
-  t.plan(16)
-
   // https://github.com/gr2m/moment.parseFormat/issues/3
   t.equal(moment.parseFormat('Thursday, February 6th, 2014 9:20pm'), 'dddd, MMMM Do, YYYY h:mma', '#3 Thursday, February 6th, 2014 9:20pm -> dddd, MMMM Do, YYYY h:mma')
   t.equal(moment('Thursday, February 6th, 2014 9:20pm', 'dddd, MMMM Do, YYYY h:mma').date(), 6, '#3 sanity check: "Thursday, February 6th, 2014 9:20pm" parses 6th correctly')
@@ -52,4 +50,10 @@ test('GitHub issues', function (t) {
   t.equal(moment.parseFormat('2014-09-04T01:20:28.888+02:00'), 'YYYY-MM-DDTHH:mm:ss.SSSZ', '#23 2014-09-04T01:20:28.888+02:00 → YYYY-MM-DDTHH:mm:ss.SSSZ')
   t.equal(moment.parseFormat('2014-09-04T01:20:28.888-02:00'), 'YYYY-MM-DDTHH:mm:ss.SSSZ', '#23 2014-09-04T01:20:28.888-02:00 → YYYY-MM-DDTHH:mm:ss.SSSZ')
   t.equal(moment.parseFormat('2014-09-04T01:20:28.888Z'), 'YYYY-MM-DDTHH:mm:ss.SSSZ', '#23 2014-02-02T10:11:58.888Z → YYYY-MM-DDTHH:mm:ss.SSSZ')
+
+  // https://github.com/gr2m/moment.parseFormat/pull/29
+  t.equal(moment.parseFormat('1434575583'), 'X', '1434575583  → X')
+  t.equal(moment.parseFormat('1318781876406'), 'x', '1318781876406  → x')
+
+  t.end()
 })
