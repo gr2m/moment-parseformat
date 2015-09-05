@@ -4,13 +4,13 @@
   "main": "moment.parseFormat.js",
   "scripts": {
     "test": "standard && npm run test:node | tap-spec",
-    "test:node": "node tests/moment.parseFormat-test.js",
-    "coverage": "istanbul cover tests/moment.parseFormat-test.js && istanbul-coveralls ",
+    "test:node": "node tests/moment-parseformat-test.js",
+    "coverage": "istanbul cover tests/moment-parseformat-test.js && istanbul-coveralls ",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/gr2m/moment.parseFormat.git"
+    "url": "https://github.com/gr2m/moment-parseformat.git"
   },
   "keywords": [
     "momentjs",
@@ -20,7 +20,7 @@
   "author": "Gregor Martynus <gregor@martynus.net>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/gr2m/moment.parseFormat/issues"
+    "url": "https://github.com/gr2m/moment-parseformat/issues"
   },
   "homepage": "http://gr2m.github.io/moment.parseFormat",
   "dependencies": {
