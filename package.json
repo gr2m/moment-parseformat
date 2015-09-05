@@ -34,5 +34,8 @@
     "standard": "^3.11.1",
     "tap-spec": "^3.0.0",
     "tape": "^4.2.0"
+  },
+  "release": {
+    "branch": "gh-pages"
   }
 }
