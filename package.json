@@ -23,9 +23,7 @@
     "url": "https://github.com/gr2m/moment-parseformat/issues"
   },
   "homepage": "http://gr2m.github.io/moment.parseFormat",
-  "dependencies": {
-    "moment": "^2.10.3"
-  },
+  "dependencies": {},
   "devDependencies": {
     "bootstrap-editable-table": "https://github.com/gr2m/bootstrap-editable-table#gh-pages",
     "istanbul": "^0.3.5",
