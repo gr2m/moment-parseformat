@@ -1,6 +1,3 @@
-/* global define */
-'use strict';
-
 /* istanbul ignore next */
 (function (root, factory) {
   /* istanbul ignore next */
