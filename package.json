@@ -4,8 +4,8 @@
   "main": "moment.parseFormat.js",
   "scripts": {
     "test": "standard && npm run test:node | tap-spec",
-    "test:node": "node tests/moment-parseformat-test.js",
-    "coverage": "istanbul cover tests/moment-parseformat-test.js && istanbul-coveralls ",
+    "test:node": "node tests/moment.parseformat-test.js",
+    "coverage": "istanbul cover tests/moment.parseformat-test.js && istanbul-coveralls ",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post"
   },
   "repository": {
@@ -23,7 +23,9 @@
     "url": "https://github.com/gr2m/moment-parseformat/issues"
   },
   "homepage": "http://gr2m.github.io/moment.parseFormat",
-  "dependencies": {},
+  "dependencies": {
+    "moment": "^2.10.6"
+  },
   "devDependencies": {
     "bootstrap-editable-table": "https://github.com/gr2m/bootstrap-editable-table#gh-pages",
     "istanbul": "^0.3.5",
