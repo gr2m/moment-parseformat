@@ -52,27 +52,27 @@ test('GitHub issues', function (t) {
   t.equal(moment.parseFormat('2014-09-04T01:20:28.888Z'), 'YYYY-MM-DDTHH:mm:ss.SSSZ', '#23 2014-02-02T10:11:58.888Z → YYYY-MM-DDTHH:mm:ss.SSSZ')
 
   // https://github.com/gr2m/moment.parseFormat/pull/29
-  t.equal(moment.parseFormat('1434575583'), 'X', '1434575583  → X')
-  t.equal(moment.parseFormat('1318781876406'), 'x', '1318781876406  → x')
+  t.equal(moment.parseFormat('1434575583'), 'X', '1434575583 → X')
+  t.equal(moment.parseFormat('1318781876406'), 'x', '1318781876406 → x')
 
   t.end()
 })
 
 test('GitHub issues - special cases', function (t) {
   // https://github.com/gr2m/moment-parseformat/issues/17
-  t.equal(moment.parseFormat('3/15'), 'M/YY', 'last number is > 12 - 3/15  → M/Y')
-  t.equal(moment.parseFormat('03/15'), 'MM/YY', 'last number is > 12 - 03/15  → MM/Y')
-  t.equal(moment.parseFormat('11/15'), 'MM/YY', 'last number is > 12 - 11/15  → MM/Y')
+  t.equal(moment.parseFormat('3/15'), 'M/YY', 'last number is > 12 - 3/15 → M/Y')
+  t.equal(moment.parseFormat('03/15'), 'MM/YY', 'last number is > 12 - 03/15 → MM/Y')
+  t.equal(moment.parseFormat('11/15'), 'MM/YY', 'last number is > 12 - 11/15 → MM/Y')
 
-  t.equal(moment.parseFormat('15/3'), 'DD/M', 'first number is > 12 - 15/3  → DD/M')
-  t.equal(moment.parseFormat('15/15'), 'undefined', 'both numbers are > 12 - 15/15  → undefined')
-  t.equal(moment.parseFormat('03/12'), 'DD/MM', 'both numbers are < 13 - 03/12  → DD/MM')
-  t.equal(moment.parseFormat('3/3'), 'D/M', 'both numbers are < 13 - 3/3  → D/M')
-  t.equal(moment.parseFormat('13/2'), 'DD/M', 'first number is > 12 && <= 31 - 13/2  → DD/M')
+  t.equal(moment.parseFormat('15/3'), 'DD/M', 'first number is > 12 - 15/3 → DD/M')
+  t.equal(moment.parseFormat('15/15'), undefined, 'both numbers are > 12 - 15/15 → undefined')
   t.equal(moment.parseFormat('03/12'), 'DD/MM', 'both numbers are < 13 - 03/12 → DD/MM')
-  t.equal(moment.parseFormat('03/03'), 'DD/M', 'both numbers are < 13 - 03/03  → DD/M')
-  t.equal(moment.parseFormat('13/02'), 'DD/M', 'first number is > 12 && <= 31 - 13/02  → DD/M')
-  t.equal(moment.parseFormat('3/12'), 'D/MM', 'both numbers are < 13 - 3/12  → D/MM')
+  t.equal(moment.parseFormat('3/3'), 'D/M', 'both numbers are < 13 - 3/3 → D/M')
+  t.equal(moment.parseFormat('13/2'), 'DD/M', 'first number is > 12 && <= 31 - 13/2 → DD/M')
+  t.equal(moment.parseFormat('03/12'), 'DD/MM', 'both numbers are < 13 - 03/12 → DD/MM')
+  t.equal(moment.parseFormat('03/03'), 'DD/MM', 'both numbers are < 13 - 03/03 → DD/MM')
+  t.equal(moment.parseFormat('13/02'), 'DD/MM', 'first number is > 12 && <= 31 - 13/02 → DD/MM')
+  t.equal(moment.parseFormat('3/12'), 'D/MM', 'both numbers are < 13 - 3/12 → D/MM')
 
   t.end()
 })
