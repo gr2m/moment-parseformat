@@ -58,6 +58,8 @@
 
   var regexDayYear = /^(1[3-9]|[2-9][0-9])\/([1-9][0-9])$/
 
+  var formatIncludesMonth = /([\/][M]|[M][\/]|[MM]|[MMMM])/
+
   var regexFillingWords = /\b(at)\b/i
 
   var regexUnixMillisecondTimestamp = /\d{13}/
@@ -146,7 +148,7 @@
     // Lets check for 4 digits first, these are years for sure
     format = format.replace(regexYearLong, 'YYYY')
 
-    // check if both numbers are < 13, then it must be DD/MM
+    // check if both numbers are < 13, then it must be D/M
     format = format.replace(regexDayShortMonthShort, 'D/M')
 
     // check if first number is < 10 && last < 13, then it must be D/MM
@@ -165,7 +167,16 @@
     format = format.replace(regexMonthYearShort, 'MM/YY')
 
     // check if both numbers are < 12, then it must be something wrong
-    format = format.replace(regexDayYear, 'undefined')
+    format = format.replace(regexDayYear, '')
+
+    // to prevent 9.20 gets formated to D.Y, we format the complete date first, then go for the time
+    if (format.match(formatIncludesMonth)) {
+      var regexHoursDotWithLeadingZeroOrDoubleDigitMinutes = /0\d.\d{2}|\d{2}.\d{2}/
+      var regexHoursDotMinutes = /\d{1}.\d{2}/
+
+      format = format.replace(regexHoursDotWithLeadingZeroOrDoubleDigitMinutes, 'H.mm')
+      format = format.replace(regexHoursDotMinutes, 'h.mm')
+    }
 
     // now, the next number, if existing, must be a day
     format = format.replace(regexDayLeadingZero, 'DD')
@@ -173,6 +184,10 @@
 
     // last but not least, there could still be a year left
     format = format.replace(regexYearShort, 'YY')
+
+    if (format.length < 1) {
+      format = undefined
+    }
 
     return format
   }
