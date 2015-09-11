@@ -74,5 +74,11 @@ test('GitHub issues - special cases', function (t) {
   t.equal(moment.parseFormat('13/02'), 'DD/MM', 'first number is > 12 && <= 31 - 13/02 → DD/MM')
   t.equal(moment.parseFormat('3/12'), 'D/MM', 'both numbers are < 13 - 3/12 → D/MM')
 
+  // https://github.com/gr2m/moment-parseformat/issues/19
+  t.equal(moment.parseFormat('February 6th, 2014 9.20'), 'MMMM Do, YYYY h.mm', 'February 6th, 2014 9.20 → MMMM Do, YYYY h.mm')
+  t.equal(moment.parseFormat('2.2.2014 09.20'), 'D.M.YYYY H.mm', '2.2.2014 09.20 → D.M.YYYY H.mm')
+  t.equal(moment.parseFormat('2.2.2014 11.20'), 'D.M.YYYY H.mm', '2.2.2014 11.20 → D.M.YYYY H.mm')
+  t.equal(moment.parseFormat('2.2.2014 9.02'), 'D.M.YYYY h.mm', '2.2.2014 9.02 → D.M.YYYY h.mm')
+
   t.end()
 })
