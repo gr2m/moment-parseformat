@@ -48,6 +48,14 @@
   var regexDay = /\d{1,2}/
   var regexYearShort = /\d{2}/
 
+  var regexDayShortMonthShort = /^([1-9])\/([1-9]|0[1-9])$/
+  var regexDayShortMonth = /^([1-9])\/(1[012])$/
+  var regexDayMonthShort = /^(0[1-9]|[12][0-9]|3[01])\/([1-9])$/
+  var regexDayMonth = /^(0[1-9]|[12][0-9]|3[01])\/(1[012]|0[1-9])$/
+
+  var regexMonthShortYearShort = /^([1-9])\/([1-9][0-9])$/
+  var regexMonthYearShort = /^(0[1-9]|1[012])\/([1-9][0-9])$/
+
   var regexFillingWords = /\b(at)\b/i
 
   var regexUnixMillisecondTimestamp = /\d{13}/
@@ -135,6 +143,24 @@
 
     // Lets check for 4 digits first, these are years for sure
     format = format.replace(regexYearLong, 'YYYY')
+
+    // check if both numbers are < 13, then it must be D/M
+    format = format.replace(regexDayShortMonthShort, 'D/M')
+
+    // check if first number is < 10 && last < 13, then it must be D/MM
+    format = format.replace(regexDayShortMonth, 'D/MM')
+
+    // check if last number is < 32 && last < 10, then it must be DD/M
+    format = format.replace(regexDayMonthShort, 'DD/M')
+
+    // check if both numbers are > 10, but first < 32 && last < 13, then it must be DD/MM
+    format = format.replace(regexDayMonth, 'DD/MM')
+
+    // check if first < 10 && last > 12, then it must be M/YY
+    format = format.replace(regexMonthShortYearShort, 'M/YY')
+
+    // check if first < 13 && last > 12, then it must be MM/YY
+    format = format.replace(regexMonthYearShort, 'MM/YY')
 
     // now, the next number, if existing, must be a day
     format = format.replace(regexDayLeadingZero, 'DD')
