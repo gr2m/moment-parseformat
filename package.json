@@ -6,7 +6,13 @@
     "test": "standard && npm run test:node | tap-spec",
     "test:node": "node tests/moment.parseformat-test.js",
     "coverage": "istanbul cover tests/moment.parseformat-test.js && istanbul-coveralls ",
-    "semantic-release": "semantic-release pre && npm publish && semantic-release post"
+    "semantic-release": "semantic-release pre && npm publish && semantic-release post",
+    "deploydocs": "gh-pages-deploy",
+    "predeploydocs": "./bin/authorize-push.js"
+  },
+  "gh-pages-deploy": {
+    "staticpath": "/",
+    "noprompt": true
   },
   "repository": {
     "type": "git",
@@ -28,6 +34,7 @@
   },
   "devDependencies": {
     "bootstrap-editable-table": "https://github.com/gr2m/bootstrap-editable-table#gh-pages",
+    "gh-pages-deploy": "^0.3.0",
     "istanbul": "^0.3.5",
     "istanbul-coveralls": "^1.0.1",
     "semantic-release": "^4.3.4",
