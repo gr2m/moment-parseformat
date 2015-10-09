@@ -8,6 +8,8 @@ moment.parseFormat – a moment.js plugin
 [travis-url]: https://travis-ci.org/gr2m/moment.parseFormat
 [travis-image]: https://api.travis-ci.org/gr2m/moment.parseFormat.png?branch=gh-pages
 
+[![Coverage Status](https://coveralls.io/repos/gr2m/moment.parseFormat/badge.svg?branch=&service=github)](https://coveralls.io/github/gr2m/moment.parseFormat?branch=gh-pages)
+
 Installation
 ------------
 

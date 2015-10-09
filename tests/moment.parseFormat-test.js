@@ -65,7 +65,7 @@ test('GitHub issues - special cases', function (t) {
   t.equal(moment.parseFormat('11/15'), 'MM/YY', 'last number is > 12 - 11/15 → MM/Y')
 
   t.equal(moment.parseFormat('15/3'), 'DD/M', 'first number is > 12 - 15/3 → DD/M')
-  t.equal(moment.parseFormat('15/15'), undefined, 'both numbers are > 12 - 15/15 → undefined')
+
   t.equal(moment.parseFormat('03/12'), 'DD/MM', 'both numbers are < 13 - 03/12 → DD/MM')
   t.equal(moment.parseFormat('3/3'), 'D/M', 'both numbers are < 13 - 3/3 → D/M')
   t.equal(moment.parseFormat('13/2'), 'DD/M', 'first number is > 12 && <= 31 - 13/2 → DD/M')

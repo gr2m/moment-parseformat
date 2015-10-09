@@ -56,8 +56,6 @@
   var regexMonthShortYearShort = /^([1-9])\/([1-9][0-9])$/
   var regexMonthYearShort = /^(0[1-9]|1[012])\/([1-9][0-9])$/
 
-  var regexDayYear = /^(1[3-9]|[2-9][0-9])\/([1-9][0-9])$/
-
   var formatIncludesMonth = /([\/][M]|[M][\/]|[MM]|[MMMM])/
 
   var regexFillingWords = /\b(at)\b/i
@@ -165,9 +163,6 @@
 
     // check if first < 13 && last > 12, then it must be MM/YY
     format = format.replace(regexMonthYearShort, 'MM/YY')
-
-    // check if both numbers are < 12, then it must be something wrong
-    format = format.replace(regexDayYear, '')
 
     // to prevent 9.20 gets formated to D.Y, we format the complete date first, then go for the time
     if (format.match(formatIncludesMonth)) {
