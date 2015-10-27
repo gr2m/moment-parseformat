@@ -39,6 +39,8 @@
   var regexHoursAmPm = new RegExp('\\d{1,2}(\\s*)' + amOrPm, 'i')
 
   var regexISO8601HoursWithLeadingZeroMinutesSecondsMilliseconds = /\d{2}:\d{2}:\d{2}\.\d{3}/
+  var regexISO8601HoursWithLeadingZeroMinutesSecondsCentiSeconds = /\d{2}:\d{2}:\d{2}\.\d{2}/
+  var regexISO8601HoursWithLeadingZeroMinutesSecondsDeciSeconds = /\d{2}:\d{2}:\d{2}\.\d{1}/
   var regexHoursWithLeadingZeroMinutesSeconds = /0\d:\d{2}:\d{2}/
   var regexHoursWithLeadingZeroMinutes = /0\d:\d{2}/
   var regexHoursMinutesSeconds = /\d{1,2}:\d{2}:\d{2}/
@@ -111,8 +113,12 @@
 
     // timezone +02:00 ☛ Z
     format = format.replace(regexTimezone, 'Z')
-    // 23:39:43.331 ☛ 'HH:mm:ss.SS'
+    // 23:39:43.331 ☛ 'HH:mm:ss.SSS'
     format = format.replace(regexISO8601HoursWithLeadingZeroMinutesSecondsMilliseconds, 'HH:mm:ss.SSS')
+    // 23:39:43.33 ☛ 'HH:mm:ss.SS'
+    format = format.replace(regexISO8601HoursWithLeadingZeroMinutesSecondsCentiSeconds, 'HH:mm:ss.SS')
+    // 23:39:43.3 ☛ 'HH:mm:ss.S'
+    format = format.replace(regexISO8601HoursWithLeadingZeroMinutesSecondsDeciSeconds, 'HH:mm:ss.S')
     // 05:30:20pm ☛ hh:mm:ssa
     format = format.replace(regexHoursWithLeadingZeroDigitMinutesSecondsAmPm, 'hh:mm:ss$1')
     // 10:30:20pm ☛ h:mm:ssa
