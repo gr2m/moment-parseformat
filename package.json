@@ -33,7 +33,7 @@
     "moment": "^2.10.6"
   },
   "devDependencies": {
-    "bootstrap-editable-table": "https://github.com/gr2m/bootstrap-editable-table#gh-pages",
+    "editable-table": "https://github.com/gr2m/editable-table#gh-pages",
     "gh-pages-deploy": "^0.3.0",
     "istanbul": "^0.3.5",
     "istanbul-coveralls": "^1.0.1",
