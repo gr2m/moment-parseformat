@@ -180,6 +180,10 @@
     // last but not least, there could still be a year left
     format = format.replace(regexYearShort, 'YY')
 
+    if (format.length < 1) {
+      format = undefined
+    }
+
     return format
   }
 
