@@ -55,6 +55,11 @@ test('GitHub issues', function (t) {
   t.equal(moment.parseFormat('1434575583'), 'X', '1434575583 → X')
   t.equal(moment.parseFormat('1318781876406'), 'x', '1318781876406 → x')
 
+  //pull request from mgd134
+  t.equal(moment.parseFormat('October 27 2015 11:28:32.0'), 'MMMM D YYYY HH:mm:ss.S', 'October 27 2015 11:28:32.0 → MMMM D YYYY HH:mm:ss.S')
+  t.equal(moment.parseFormat('October 27 2015 11:28:32.01'), 'MMMM D YYYY HH:mm:ss.SS', 'October 27 2015 11:28:32.0 → MMMM D YYYY HH:mm:ss.SS')
+  t.equal(moment.parseFormat('October 27 2015 11:28:32.012'), 'MMMM D YYYY HH:mm:ss.SSS', 'October 27 2015 11:28:32.0 → MMMM D YYYY HH:mm:ss.SSS')
+
   t.end()
 })
 
