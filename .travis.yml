@@ -11,8 +11,6 @@ branches:
   only:
   - gh-pages
   - /^pull*$/
-before_install:
-  - npm i -g npm@^2.0.0
 before_script:
   - npm prune
 after_success:
