@@ -11,7 +11,7 @@ before_script:
   - npm prune
 after_success:
   - npm run semantic-release
-  - npm run deploy
+  - if [[ $TRAVIS_BRANCH == 'master' ]]; then npm run deploy; fi
 branches:
   except:
     - "/^v\\d+\\.\\d+\\.\\d+$/"
