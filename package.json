@@ -1,41 +1,61 @@
 {
   "name": "moment-parseformat",
   "description": "A moment.js plugin to extract the format of a date/time string",
-  "main": "moment.parseFormat.js",
   "scripts": {
-    "test": "standard && npm run test:node | tap-spec",
-    "test:node": "node tests/moment.parseformat-test.js",
-    "coverage": "istanbul cover tests/moment.parseformat-test.js && istanbul-coveralls ",
-    "semantic-release": "semantic-release pre && npm publish && semantic-release post"
+    "start": "npm run build:demo && beefy ./index.js --cwd=./demo",
+    "prebuild": "rimraf dist && mkdirp dist",
+    "build": "browserify index.js -s moment-parseformat -o dist/moment-parseformat.js",
+    "build:demo": "browserify index.js -s moment-parseformat -o demo/moment-parseformat.js",
+    "deploy": "npm run build:demo && npm run deploydocs",
+    "predeploydocs": "./bin/authorize-push.js",
+    "deploydocs": "gh-pages-deploy",
+    "pretest": "standard",
+    "test": "npm run -s test:node | tap-spec",
+    "test:coverage": "istanbul cover test/moment-parseformat-test.js",
+    "test:node": "node test/moment-parseformat-test.js",
+    "presemantic-release": "npm run build",
+    "semantic-release": "semantic-release pre && npm publish && semantic-release post",
+    "postsemantic-release": "npm run test:coverage && istanbul-coveralls"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/gr2m/moment-parseformat.git"
   },
-  "keywords": [
-    "momentjs",
-    "date",
-    "parse"
-  ],
   "author": "Gregor Martynus <gregor@martynus.net>",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/gr2m/moment-parseformat/issues"
   },
-  "homepage": "http://gr2m.github.io/moment.parseFormat",
+  "homepage": "http://gr2m.github.io/moment-parseformat",
   "dependencies": {
     "moment": "^2.10.6"
   },
   "devDependencies": {
-    "editable-table": "https://github.com/gr2m/editable-table#gh-pages",
+    "beefy": "^2.1.5",
+    "browserify": "^11.2.0",
+    "gh-pages-deploy": "^0.3.0",
     "istanbul": "^0.3.5",
     "istanbul-coveralls": "^1.0.1",
-    "semantic-release": "^4.3.4",
+    "mkdirp": "^0.5.1",
+    "rimraf": "^2.4.3",
+    "semantic-release": "^6.0.3",
     "standard": "^3.11.1",
     "tap-spec": "^3.0.0",
     "tape": "^4.2.0"
   },
-  "release": {
-    "branch": "gh-pages"
+  "keywords": [
+    "momentjs",
+    "date",
+    "parse",
+    "format"
+  ],
+  "gh-pages-deploy": {
+    "staticpath": "demo",
+    "noprompt": true
+  },
+  "standard": {
+    "ignore": [
+      "demo"
+    ]
   }
 }
