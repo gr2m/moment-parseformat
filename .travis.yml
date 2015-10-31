@@ -7,11 +7,11 @@ notifications:
   email: false
 node_js:
   - 4
-branches:
-  only:
-  - gh-pages
-  - /^pull*$/
 before_script:
   - npm prune
 after_success:
   - npm run semantic-release
+  - if [[ $TRAVIS_BRANCH == 'master' ]]; then npm run deploy; fi
+branches:
+  except:
+    - "/^v\\d+\\.\\d+\\.\\d+$/"
