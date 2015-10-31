@@ -3,12 +3,10 @@ moment.parseFormat – a moment.js plugin
 
 > A moment.js plugin to extract the format of a date/time string
 
-[![Build Status][travis-image]][travis-url]
-
-[travis-url]: https://travis-ci.org/gr2m/moment.parseFormat
-[travis-image]: https://api.travis-ci.org/gr2m/moment.parseFormat.png?branch=gh-pages
-
-[![Coverage Status](https://coveralls.io/repos/gr2m/moment.parseFormat/badge.svg?branch=&service=github)](https://coveralls.io/github/gr2m/moment.parseFormat?branch=gh-pages)
+[![Build Status](https://travis-ci.org/gr2m/moment-parseformat.svg?branch=master)](https://travis-ci.org/gr2m/moment-parseformat)
+[![Coverage Status](https://coveralls.io/repos/gr2m/moment-parseformat/badge.svg?branch=master)](https://coveralls.io/r/gr2m/moment-parseformat?branch=master)
+[![Dependency Status](https://david-dm.org/gr2m/moment-parseformat.svg)](https://david-dm.org/gr2m/moment-parseformat)
+[![devDependency Status](https://david-dm.org/gr2m/moment-parseformat/dev-status.svg)](https://david-dm.org/gr2m/moment-parseformat#info=devDependencies)
 
 Installation
 ------------
@@ -18,12 +16,6 @@ Load via script tag
 ```html
 <script src="moment.js"></script>
 <script src="moment.parseFormat.js"></script>
-```
-
-Install using [bower](http://bower.io/) for usage in browser:
-
-```
-bower install --save moment-parseformat
 ```
 
 Install using [npm](https://npmjs.org/) for node.js:
