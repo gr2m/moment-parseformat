@@ -3,7 +3,7 @@
 var test = require('tape')
 var moment = require('moment')
 
-moment.parseFormat = require('../moment.parseFormat')
+moment.parseFormat = require('../index')
 
 test('standard cases', function (t) {
   t.equal(moment.parseFormat('Thursday 9:20pm'), 'dddd h:mma', 'Thursday 9:20pm → dddd h:mma')
