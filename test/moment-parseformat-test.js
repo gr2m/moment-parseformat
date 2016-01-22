@@ -87,3 +87,12 @@ test('GitHub issues - special cases', function (t) {
 
   t.end()
 })
+
+test('Github issue #40', function (t) {
+  t.equal(moment.parseFormat('31/12/2013'), 'DD/MM/YYYY', '31/12/2013 → DD/MM/YYYY')
+  t.equal(moment.parseFormat('12/31/2013'), 'MM/DD/YYYY', '12/31/2013 → MM/DD/YYYY')
+  t.equal(moment.parseFormat('31-12-2013'), 'DD-MM-YYYY', '31-12-2013 → DD-MM-YYYY')
+  t.equal(moment.parseFormat('12-31-2013'), 'MM-DD-YYYY', '12-31-2013 → MM-DD-YYYY')
+
+  t.end()
+})
