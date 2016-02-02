@@ -60,6 +60,10 @@ test('GitHub issues', function (t) {
   t.equal(moment.parseFormat('October 27 2015 11:28:32.01'), 'MMMM D YYYY HH:mm:ss.SS', 'October 27 2015 11:28:32.0 → MMMM D YYYY HH:mm:ss.SS')
   t.equal(moment.parseFormat('October 27 2015 11:28:32.012'), 'MMMM D YYYY HH:mm:ss.SSS', 'October 27 2015 11:28:32.0 → MMMM D YYYY HH:mm:ss.SSS')
 
+  // https://github.com/gr2m/moment-parseformat/pull/45
+  t.equal(moment.parseFormat('Feb 1 2016 1:03:22.111'), 'MMM D YYYY H:mm:ss.SSS', 'Feb 1 2016 1:03:22.111 → MMM D YYYY H:mm:ss.SSS')
+  t.equal(moment.parseFormat('Feb 1 2016 1:03:22.11'), 'MMM D YYYY H:mm:ss.SS', 'Feb 1 2016 1:03:22.111 → MMM D YYYY H:mm:ss.SS')
+  t.equal(moment.parseFormat('Feb 1 2016 1:03:22.1'), 'MMM D YYYY H:mm:ss.S', 'Feb 1 2016 1:03:22.111 → MMM D YYYY H:mm:ss.S')
   t.end()
 })
 
