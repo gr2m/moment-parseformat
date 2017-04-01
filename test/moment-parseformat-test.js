@@ -12,6 +12,7 @@ test('standard cases', function (t) {
   t.equal(moment.parseFormat('02/03/14'), 'MM/DD/YY', '02/03/14 → MM/DD/YY')
   t.equal(moment.parseFormat('2014-01-10 20:00:15'), 'YYYY-MM-DD H:mm:ss', '2014-01-10 20:00:15 → YYYY-MM-DD H:mm:ss')
   t.equal(moment.parseFormat('Thursday at 9:20pm'), 'dddd [at] h:mma', 'Thursday at 9:20pm → dddd [at] h:mma')
+  t.equal(moment.parseFormat(1397418578), 'X', '1397418578 → X')
 
   t.end()
 })
