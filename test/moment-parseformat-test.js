@@ -72,6 +72,15 @@ test('GitHub issues', function (t) {
   t.equal(moment.parseFormat('2014-09-04T01:20:28.888-0200'), 'YYYY-MM-DDTHH:mm:ss.SSSZ', '#56 2014-09-04T01:20:28.888-0200 → YYYY-MM-DDTHH:mm:ss.SSSZ')
   t.equal(moment.parseFormat('2014-09-04T01:20:28+0200'), 'YYYY-MM-DDTHH:mm:ssZ', '#56 2014-09-04T01:20:28+0200 → YYYY-MM-DDTHH:mm:ssZ')
   t.end()
+
+  // https://github.com/gr2m/moment-parseformat/issues/67
+  t.equal(moment.parseFormat('SUNNYVALE'), 'SUNNYVALE', '#67 SUNNYVALE → dddNYVALE')
+
+  // https://github.com/gr2m/moment-parseformat/issues/68
+  t.equal(moment.parseFormat('Su_2016_Aug_3'), 'dd_YYYY_MMM_D', '#68 Su_2016_Aug_3 → Su_YYYY_MMM_D')
+  t.equal(moment.parseFormat('Su_2016_Aug_3rd_04:00'), 'dd_YYYY_MMM_Do_HH:mm', '#68 Su_2016_Aug_3 → Su_YYYY_MMM_D')
+  t.equal(moment.parseFormat('Su2016Aug01'), 'ddYYYYMMMDD', '#68 Su_2016_Aug_3 → Su_YYYY_MMM_D')
+  t.equal(moment.parseFormat('Sunday2016August01'), 'ddddYYYYMMMMDD', '#68 Su_2016_Aug_3 → Su_YYYY_MMM_D')
 })
 
 test('GitHub issues - special cases', function (t) {
