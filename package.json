@@ -34,7 +34,7 @@
   "homepage": "http://gr2m.github.io/moment-parseformat",
   "devDependencies": {
     "beefy": "^2.1.5",
-    "browserify": "^13.0.0",
+    "browserify": "^14.4.0",
     "gh-pages-deploy": "^0.4.0",
     "istanbul": "^0.4.0",
     "istanbul-coveralls": "^1.0.1",
@@ -42,7 +42,7 @@
     "moment": "^2.10.6",
     "rimraf": "^2.4.4",
     "semantic-release": "^8.0.3",
-    "standard": "^8.0.0",
+    "standard": "^10.0.3",
     "tap-spec": "^4.1.0",
     "tape": "^4.2.0"
   },
