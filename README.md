@@ -1,6 +1,8 @@
 moment.parseFormat – a moment.js plugin
 =======================================
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/gr2m/moment-parseformat.svg)](https://greenkeeper.io/)
+
 > A moment.js plugin to extract the format of a date/time string
 
 [![Build Status](https://travis-ci.org/gr2m/moment-parseformat.svg?branch=master)](https://travis-ci.org/gr2m/moment-parseformat)
