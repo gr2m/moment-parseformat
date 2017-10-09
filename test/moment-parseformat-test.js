@@ -78,6 +78,14 @@ test('GitHub issues', function (t) {
   t.equal(moment.parseFormat('Aug 11 2015 11:20a'), 'MMM D YYYY h:mma', '#65 Aug 11 2015 11:20p → MMM D YYYY H:mmp')
   t.equal(moment.parseFormat('Aug 11 2015 11:20P'), 'MMM D YYYY h:mmA', '#65 Aug 11 2015 11:20p → MMM D YYYY H:mmp')
   t.equal(moment.parseFormat('Aug 11 2015 11:20A'), 'MMM D YYYY h:mmA', '#65 Aug 11 2015 11:20p → MMM D YYYY H:mmp')
+
+  // https://github.com/gr2m/moment-parseformat/issues/70
+  t.equal(moment.parseFormat('2015 02 03'), 'YYYY MM DD', '#70 2015 02 03 → YYYY MM DD')
+  t.equal(moment.parseFormat('2015 2 3'), 'YYYY M D', '#70 2015 2 3 → YYYY M D')
+  t.equal(moment.parseFormat('2 3 2015', {preferredOrder: 'MDY'}), 'M D YYYY', '#70 2 3 2015 → M D YYYY')
+  t.equal(moment.parseFormat('02 03 2015', {preferredOrder: 'MDY'}), 'MM DD YYYY', '#70 02 03 2015 → MM DD YYYY')
+  t.equal(moment.parseFormat('2 3 2015', {preferredOrder: 'DMY'}), 'D M YYYY', '#70 2 3 2015 (preferredOrder: DMY) → D M YYYY')
+  t.equal(moment.parseFormat('02 03 2015', {preferredOrder: 'DMY'}), 'DD MM YYYY', '#70 02 03 2015 (preferredOrder: DMY) → DD MM YYYY')
 })
 
 test('GitHub issues - special cases', function (t) {
