@@ -14,7 +14,7 @@
     "test:coverage": "istanbul cover test/moment-parseformat-test.js",
     "test:node": "node test/moment-parseformat-test.js",
     "presemantic-release": "npm run build",
-    "semantic-release": "semantic-release pre && npm publish && semantic-release post",
+    "semantic-release": "semantic-release",
     "postsemantic-release": "npm run test:coverage && istanbul-coveralls"
   },
   "files": [
