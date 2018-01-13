@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>moment.parseFormat – a moment.js plugin</title>
+
+ <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="http://gr2m.github.io/editable-table/bootstrap-editable-table.css">
+  <style>
+  html, body { padding: 0; margin: 0; font-family: Helvetica, Arial; }
+  .main { padding: 18px; }
+  h1 { margin: 0; font-size: 28px; font-weight: bold; }
+  h6 { margin: 0; }
+  header { padding: 18px 18px 24px; background: #222; color: #fff; background-image: linear-gradient(90deg, #2C2A86 20.5%, #078D2D 20.5%, #078D2D 37.5%, #FCB20D 37.5%, #FCB20D 55.5%, #EC5100 55.5%, #EC5100 72.5%, #6A3C06 72.5%, #6A3C06 79.5%, #C01C1B 79.5%); /* hoodie hoodie hoodie! */ background-size: 300px 6px; background-repeat: repeat-x; background-position: 0 100%; }
+  header a { color: #fff !important; }
+  table { margin: 24px 0 0; }
+  var { font-style: normal;}
+  p.info { padding: 0; margin: 0; font-size: 10px; color: #888; }
+  p.info a { color: inherit; text-decoration: underline; }
+  td:first-child, th:first-child { padding-left: 0 !important; }
+  tr:last-child a { display: none; }
+  th {width: 30%; white-space: nowrap; }
+  td:last-child, th:last-child { width: 120px; text-align: right; }
+  .error var[name=check] { color: #c00;}
+  td, th { cursor: default !important; }
+  .report { display: none; }
+  tr:hover .report, .error .report {display: inline;}
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>moment.parseFormat</h1>
+    <h6>Made by the <a href="http://hood.ie">Hoodie Community</a>.</h6>
+  </header>
+
+  <div class="main">
+    <h3>The what? And the why?</h3>
+    <p>
+      moment.parseFormat is a plugin for <a href="http://momentjs.com/">moment.js</a>, that turns Date/Time Strings
+      into <a href="http://momentjs.com/docs/#/displaying/format/">their representing formats</a>.
+    </p>
+    <p>
+      That allows for date/time inputs that not only to set a date/time, but also to configure
+      the user's preffered format. Because users hate configuration forms™, try to avoid them if you can.
+    </p>
+    <p>
+      Here are some examples. Play with them or add new ones. If you find a problem, <a href="https://github.com/gr2m/moment-parseformat/issues/new">please report</a>
+    </p>
+    <table data-editable data-editable-spy class="table">
+      <thead>
+        <tr>
+          <th>Test</th>
+          <th>Format</th>
+          <th>Check</th>
+          <th>Found a bug?</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <input name="test" placeholder="add your test">
+          </td>
+          <td>
+            <var name="format"></var>
+          </td>
+          <td>
+            <var name="check"></var>
+          </td>
+          <td>
+            <a href="#" class="report">report</a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p class="info">
+      <strong>Note:</strong> This demo is using the <a href="https://github.com/gr2m/bootstrap-editable-table">Bootstrap Editable Table</a>
+      plugin for auto-adding of new rows, and for styling.
+    </p>
+  </div>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <script src="http://gr2m.github.io/editable-table/bootstrap-editable-table.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js"></script>
+  <script src="moment-parseformat.js"></script>
+  <script>
+  $(document.body).on('input', 'input', function(event) {
+    var $row = $(event.target).closest('tr');
+    var test = event.target.value;
+    var format = moment.parseFormat(test);
+    var check = moment(test, format).format(format);
+    var $format = $row.find('[name="format"]');
+    var $check = $row.find('[name="check"]');
+
+    $format.text(format);
+    $check.text(check);
+
+    $row.toggleClass('error', check.toLowerCase() !== test.toLowerCase());
+  });
+  $('table').on('click', '.report', function(event) {
+    event.preventDefault();
+    var test = $(event.target).closest('tr').find('[name=test]').val();
+    var format = $(event.target).closest('tr').find('[name=format]').text();
+    var url = 'https://github.com/gr2m/moment-parseformat/issues/new?title='+test+' → '+format+'&body=`moment.parseFormat(\''+test+'\')` parsed to `'+format+'`, I expected: `<please fill in>`'
+    window.open(url);
+  })
+
+  var $table = $('table');
+  var tests = [
+    'Thursday 9:20pm',
+    'Thursday, February 6th, 2014 9:20pm',
+    '23:20',
+    '02/03/14',
+    '2014-01-10 20:00:15',
+    'Thursday at 9:20pm',
+    moment().format(),
+    '10.10.2010',
+    '10.20.2010',
+    '10/8/2014 5:08:35 PM'
+  ]
+  $table.editableTable('add', tests.map(function(test) { return {test: test} }));
+  $table.find('tbody tr:not(:last-child) input').trigger('input');
+  </script>
+</body>
+</html>
