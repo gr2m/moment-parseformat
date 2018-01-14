@@ -9,9 +9,12 @@ node_js:
   - 4
 before_script:
   - npm prune
-after_success:
-  - npm run semantic-release
-  - if [[ $TRAVIS_BRANCH == 'master' ]]; then npm run deploy; fi
 branches:
   except:
     - "/^v\\d+\\.\\d+\\.\\d+$/"
+jobs:
+  include:
+    - stage: release
+      node_js: lts/*
+      script:
+        - npm run semantic-release
