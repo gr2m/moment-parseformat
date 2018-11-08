@@ -139,21 +139,11 @@ test('Github issue #63', function (t) {
   t.end()
 })
 
-test('GROW tests', function (t) {
+test('Various date only formats', function (t) {
   t.equal(moment.parseFormat('3/04/18'), 'M/DD/YY', '3/04/18 → M/DD/YY')
   t.equal(moment.parseFormat('03/4/18'), 'MM/D/YY', '03/4/18 → MM/D/YY')
   t.equal(moment.parseFormat('3/04/2018'), 'M/DD/YYYY', '3/04/2018 → M/DD/YYYY')
   t.equal(moment.parseFormat('03/4/2018'), 'MM/D/YYYY', '03/4/2018 → MM/D/YYYY')
-
-  t.equal(moment.parseFormat('4/3/18', { preferredOrder: 'DMY' }), 'D/M/YY', '4/3/18 → D/M/YY')
-  t.equal(moment.parseFormat('4/03/18', { preferredOrder: 'DMY' }), 'D/MM/YY', '4/03/18 → D/MM/YY')
-  t.equal(moment.parseFormat('04/3/18', { preferredOrder: 'DMY' }), 'DD/M/YY', '04/3/18 → DD/M/YY')
-  t.equal(moment.parseFormat('04/03/18', { preferredOrder: 'DMY' }), 'DD/MM/YY', '04/03/18 → DD/MM/YY')
-  t.equal(moment.parseFormat('4/3/2018', { preferredOrder: 'DMY' }), 'D/M/YYYY', '4/3/2018 → D/M/YYYY')
-  t.equal(moment.parseFormat('4/03/2018', { preferredOrder: 'DMY' }), 'D/MM/YYYY', '4/03/2018 → D/MM/YYYY')
-  t.equal(moment.parseFormat('04/3/2018', { preferredOrder: 'DMY' }), 'DD/M/YYYY', '04/3/2018 → DD/M/YYYY')
-  t.equal(moment.parseFormat('04/03/2018', { preferredOrder: 'DMY' }), 'DD/MM/YYYY', '04/03/2018 → DD/MM/YYYY')
-
   t.equal(moment.parseFormat('04-Mar-2018'), 'DD-MMM-YYYY', '04-Mar-2018 → DD-MMM-YYYY')
   t.equal(moment.parseFormat('04-March-2018'), 'DD-MMMM-YYYY', '04-March-2018 → DD-MMMM-YYYY')
   t.equal(moment.parseFormat('March/4th'), 'MMMM/Do', 'March/4th → MMMM/Do')
@@ -174,6 +164,19 @@ test('GROW tests', function (t) {
   t.equal(moment.parseFormat('Sun, March 04 \'12'), 'ddd, MMMM DD \'YY', 'Sun, March 04 \'12 → ddd, MMMM DD \'YY')
   t.equal(moment.parseFormat('Sunday, Mar 04 \'12'), 'dddd, MMM DD \'YY', 'Sunday, Mar 04 \'12 → dddd, MMM DD \'YY')
   t.equal(moment.parseFormat('Sun, Mar 04 \'12'), 'ddd, MMM DD \'YY', 'Sun, Mar 04 \'12 → ddd, MMM DD \'YY')
+
+  t.end()
+})
+
+test('Various date only formats with preferred order', function (t) {
+  t.equal(moment.parseFormat('4/3/18', { preferredOrder: 'DMY' }), 'D/M/YY', '4/3/18 → D/M/YY')
+  t.equal(moment.parseFormat('4/03/18', { preferredOrder: 'DMY' }), 'D/MM/YY', '4/03/18 → D/MM/YY')
+  t.equal(moment.parseFormat('04/3/18', { preferredOrder: 'DMY' }), 'DD/M/YY', '04/3/18 → DD/M/YY')
+  t.equal(moment.parseFormat('04/03/18', { preferredOrder: 'DMY' }), 'DD/MM/YY', '04/03/18 → DD/MM/YY')
+  t.equal(moment.parseFormat('4/3/2018', { preferredOrder: 'DMY' }), 'D/M/YYYY', '4/3/2018 → D/M/YYYY')
+  t.equal(moment.parseFormat('4/03/2018', { preferredOrder: 'DMY' }), 'D/MM/YYYY', '4/03/2018 → D/MM/YYYY')
+  t.equal(moment.parseFormat('04/3/2018', { preferredOrder: 'DMY' }), 'DD/M/YYYY', '04/3/2018 → DD/M/YYYY')
+  t.equal(moment.parseFormat('04/03/2018', { preferredOrder: 'DMY' }), 'DD/MM/YYYY', '04/03/2018 → DD/MM/YYYY')
 
   t.end()
 })
