@@ -9,7 +9,6 @@
     "deploy": "npm run build:demo && npm run deploydocs",
     "predeploydocs": "./bin/authorize-push.js",
     "deploydocs": "gh-pages-deploy",
-    "pretest": "standard",
     "test": "npm run -s test:node | tap-spec",
     "test:coverage": "istanbul cover test/moment-parseformat-test.js",
     "test:node": "node test/moment-parseformat-test.js",

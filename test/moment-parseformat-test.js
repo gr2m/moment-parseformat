@@ -113,6 +113,32 @@ test('Github issue #40', function (t) {
   t.end()
 })
 
+test('Github issue #52', function (t) {
+  t.equal(moment.parseFormat('1-01-2016'), 'D-MM-YYYY', '1-01-2016 → D-MM-YYYY')
+  t.end();
+})
+
+test('Github issue #59', function (t) {
+  t.equal(moment.parseFormat('30/01/16'), 'DD/MM/YY', '30/01/16 → DD/MM/YY')
+  t.end();
+})
+
+test('Github issue #60', function (t) {
+  t.equal(moment.parseFormat('05 2015'), 'MM YYYY', '05 2015 → MM YYYY')
+  t.end();
+})
+
+// Partially. Need to pass in a flag to get the DD, since this single D format is favored everywhere else
+test('Github issue #61', function (t) {
+  t.equal(moment.parseFormat('19-feb-1990', { preferLongFormat: true }), 'DD-MMM-YYYY', '05 2015 → DD-MMM-YYYY')
+  t.end();
+})
+
+test('Github issue #63', function (t) {
+  t.equal(moment.parseFormat('Thu Feb 04 2016 16:14:40 GMT 0700'), 'ddd MMM DD YYYY H:mm:ss [GMT] Z', 'Thu Feb 04 2016 16:14:40 GMT 0700 → ddd MMM DD YYYY H:mm:ss [GMT] Z')
+  t.end();
+})
+
 test('GROW tests', function (t) {
 
   t.equal(moment.parseFormat('3/04/18'), 'M/DD/YY', '3/04/18 → M/DD/YY')
