@@ -139,6 +139,36 @@ test('Github issue #63', function (t) {
   t.end()
 })
 
+test('Oddball formats', function (t) {
+  t.equal(moment.parseFormat('2018-12-30T11:23:21'), 'YYYY-MM-DDTHH:mm:ss', '2018-12-30T11:23:21 → YYYY-MM-DDTHH:mm:ss')
+  t.equal(moment.parseFormat('12-83'), 'MM-YY', '12-83 → MM-YY')
+  t.equal(moment.parseFormat('01-01'), 'MM-DD', '12-01 → MM-DD') // I don't like this one. It gets ambiguous with the year.
+
+  t.equal(moment.parseFormat('2017-04-10T23:27:16Z'), 'YYYY-MM-DDTHH:mm:ssZ', '2017-04-10T23:27:16Z → YYYY-MM-DDTHH:mm:ssZ')
+  t.equal(moment.parseFormat('2017-09-21T11:54:50Z'), 'YYYY-MM-DDTHH:mm:ssZ', '2017-09-21T11:54:50Z → YYYY-MM-DDTHH:mm:ssZ')
+  t.equal(moment.parseFormat('2017-10-01T03:20:39Z'), 'YYYY-MM-DDTHH:mm:ssZ', '2017-10-01T03:20:39Z → YYYY-MM-DDTHH:mm:ssZ')
+  t.equal(moment.parseFormat('2016-12-25T14:19:36Z'), 'YYYY-MM-DDTHH:mm:ssZ', '2016-12-25T14:19:36Z → YYYY-MM-DDTHH:mm:ssZ')
+  t.equal(moment.parseFormat('2017-05-26T20:34:55Z'), 'YYYY-MM-DDTHH:mm:ssZ', '2017-05-26T20:34:55Z → YYYY-MM-DDTHH:mm:ssZ')
+  t.equal(moment.parseFormat('2017-03-03T20:00:04Z'), 'YYYY-MM-DDTHH:mm:ssZ', '2017-03-03T20:00:04Z → YYYY-MM-DDTHH:mm:ssZ')
+  t.equal(moment.parseFormat('2017-01-30T04:29:36Z'), 'YYYY-MM-DDTHH:mm:ssZ', '2017-01-30T04:29:36Z → YYYY-MM-DDTHH:mm:ssZ')
+  t.equal(moment.parseFormat('2017-11-07T09:50:32Z'), 'YYYY-MM-DDTHH:mm:ssZ', '2017-11-07T09:50:32Z → YYYY-MM-DDTHH:mm:ssZ')
+  t.equal(moment.parseFormat('2017-07-15T22:25:10Z'), 'YYYY-MM-DDTHH:mm:ssZ', '2017-07-15T22:25:10Z → YYYY-MM-DDTHH:mm:ssZ')
+  t.equal(moment.parseFormat('2017-09-27T18:36:26Z'), 'YYYY-MM-DDTHH:mm:ssZ', '2017-09-27T18:36:26Z → YYYY-MM-DDTHH:mm:ssZ')
+
+  t.equal(moment.parseFormat('2017-08-04T18:56:17Z'), 'YYYY-MM-DDTHH:mm:ssZ', '2017-08-04T18:56:17Z → YYYY-MM-DDTHH:mm:ssZ')
+  t.equal(moment.parseFormat('2017-11-01T01:27:03Z'), 'YYYY-MM-DDTHH:mm:ssZ', '2017-11-01T01:27:03Z → YYYY-MM-DDTHH:mm:ssZ')
+  t.equal(moment.parseFormat('2017-01-12T02:18:42Z'), 'YYYY-MM-DDTHH:mm:ssZ', '2017-01-12T02:18:42Z → YYYY-MM-DDTHH:mm:ssZ')
+  t.equal(moment.parseFormat('2017-08-11T01:58:04Z'), 'YYYY-MM-DDTHH:mm:ssZ', '2017-08-11T01:58:04Z → YYYY-MM-DDTHH:mm:ssZ')
+  t.equal(moment.parseFormat('2017-04-29T04:44:39Z'), 'YYYY-MM-DDTHH:mm:ssZ', '2017-04-29T04:44:39Z → YYYY-MM-DDTHH:mm:ssZ')
+  t.equal(moment.parseFormat('2017-06-14T11:08:30Z'), 'YYYY-MM-DDTHH:mm:ssZ', '2017-06-14T11:08:30Z → YYYY-MM-DDTHH:mm:ssZ')
+  t.equal(moment.parseFormat('2017-08-22T09:25:44Z'), 'YYYY-MM-DDTHH:mm:ssZ', '2017-08-22T09:25:44Z → YYYY-MM-DDTHH:mm:ssZ')
+  t.equal(moment.parseFormat('2016-12-13T05:05:14Z'), 'YYYY-MM-DDTHH:mm:ssZ', '2016-12-13T05:05:14Z → YYYY-MM-DDTHH:mm:ssZ')
+  t.equal(moment.parseFormat('2016-12-24T14:58:02Z'), 'YYYY-MM-DDTHH:mm:ssZ', '2016-12-24T14:58:02Z → YYYY-MM-DDTHH:mm:ssZ')
+  t.equal(moment.parseFormat('2017-07-25T16:29:34Z'), 'YYYY-MM-DDTHH:mm:ssZ', '2017-07-25T16:29:34Z → YYYY-MM-DDTHH:mm:ssZ')
+
+  t.end()
+})
+
 test('Various date only formats', function (t) {
   t.equal(moment.parseFormat('03/04/18'), 'MM/DD/YY', '03/04/18 → MM/DD/YY')
   t.equal(moment.parseFormat('03/04/2018'), 'MM/DD/YYYY', '03/04/2018 → MM/DD/YYYY')
