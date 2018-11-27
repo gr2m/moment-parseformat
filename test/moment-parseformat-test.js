@@ -165,6 +165,7 @@ test('Oddball formats', function (t) {
   t.equal(moment.parseFormat('2016-12-13T05:05:14Z'), 'YYYY-MM-DDTHH:mm:ssZ', '2016-12-13T05:05:14Z → YYYY-MM-DDTHH:mm:ssZ')
   t.equal(moment.parseFormat('2016-12-24T14:58:02Z'), 'YYYY-MM-DDTHH:mm:ssZ', '2016-12-24T14:58:02Z → YYYY-MM-DDTHH:mm:ssZ')
   t.equal(moment.parseFormat('2017-07-25T16:29:34Z'), 'YYYY-MM-DDTHH:mm:ssZ', '2017-07-25T16:29:34Z → YYYY-MM-DDTHH:mm:ssZ')
+  t.equal(moment.parseFormat('2017-04-10T23:27:16Z'), 'YYYY-MM-DDTHH:mm:ssZ', '2017-04-10T23:27:16Z → YYYY-MM-DDTHH:mm:ssZ')
 
   t.end()
 })
