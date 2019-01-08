@@ -34,7 +34,7 @@
   "devDependencies": {
     "beefy": "^2.1.5",
     "browserify": "^16.0.0",
-    "gh-pages-deploy": "^0.5.0",
+    "gh-pages-deploy": "^0.5.1",
     "istanbul": "^0.4.0",
     "istanbul-coveralls": "^1.0.1",
     "mkdirp": "^0.5.1",
