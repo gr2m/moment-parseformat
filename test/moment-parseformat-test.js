@@ -1,9 +1,9 @@
-'use strict';
+'use strict'
 
-var test = require('tape');
-var moment = require('moment');
+var test = require('tape')
+var moment = require('moment')
 
-moment.parseFormat = require('../index');
+moment.parseFormat = require('../index')
 
 test('standard cases', function (t) {
   t.equal(moment.parseFormat('Thursday 9:20pm'), 'dddd h:mma', 'Thursday 9:20pm → dddd h:mma')
@@ -77,13 +77,13 @@ test('GitHub issues', function (t) {
   t.equal(moment.parseFormat('2014-09-04T01:20:28.888-02:00'), 'YYYY-MM-DDTHH:mm:ss.SSSZ', '#56 2014-09-04T01:20:28.888-0200 → YYYY-MM-DDTHH:mm:ss.SSSZ')
   t.equal(moment.parseFormat('2014-09-04T01:20:28+02:00'), 'YYYY-MM-DDTHH:mm:ssZ', '#56 2014-09-04T01:20:28+0200 → YYYY-MM-DDTHH:mm:ssZ')
 
-  t.end()
-
   // https://github.com/gr2m/moment-parseformat/issues/65
   t.equal(moment.parseFormat('Aug 11 2015 11:20p'), 'MMM D YYYY h:mma', '#65 Aug 11 2015 11:20p → MMM D YYYY H:mmp')
   t.equal(moment.parseFormat('Aug 11 2015 11:20a'), 'MMM D YYYY h:mma', '#65 Aug 11 2015 11:20p → MMM D YYYY H:mmp')
   t.equal(moment.parseFormat('Aug 11 2015 11:20P'), 'MMM D YYYY h:mmA', '#65 Aug 11 2015 11:20p → MMM D YYYY H:mmp')
   t.equal(moment.parseFormat('Aug 11 2015 11:20A'), 'MMM D YYYY h:mmA', '#65 Aug 11 2015 11:20p → MMM D YYYY H:mmp')
+
+  t.end()
 })
 
 test('GitHub issues - special cases', function (t) {
