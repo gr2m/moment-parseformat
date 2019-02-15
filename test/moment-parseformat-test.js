@@ -1,9 +1,9 @@
-'use strict'
+'use strict';
 
-var test = require('tape')
-var moment = require('moment')
+var test = require('tape');
+var moment = require('moment');
 
-moment.parseFormat = require('../index')
+moment.parseFormat = require('../index');
 
 test('standard cases', function (t) {
   t.equal(moment.parseFormat('Thursday 9:20pm'), 'dddd h:mma', 'Thursday 9:20pm → dddd h:mma')
@@ -67,10 +67,16 @@ test('GitHub issues', function (t) {
   t.equal(moment.parseFormat('Feb 1 2016 1:03:22.1'), 'MMM D YYYY H:mm:ss.S', 'Feb 1 2016 1:03:22.111 → MMM D YYYY H:mm:ss.S')
 
   // https://github.com/gr2m/moment-parseformat/issues/56
-  t.equal(moment.parseFormat('2014-23-04T01:20:28.888+0200'), 'YYYY-MM-DDTHH:mm:ss.SSSZ', '#56 2014-23-04T01:20:28.888+0200 → YYYY-MM-DDTHH:mm:ss.SSSZ')
-  t.equal(moment.parseFormat('2014-09-04T01:20:28.888+0200'), 'YYYY-MM-DDTHH:mm:ss.SSSZ', '#56 2014-09-04T01:20:28.888+0200 → YYYY-MM-DDTHH:mm:ss.SSSZ')
-  t.equal(moment.parseFormat('2014-09-04T01:20:28.888-0200'), 'YYYY-MM-DDTHH:mm:ss.SSSZ', '#56 2014-09-04T01:20:28.888-0200 → YYYY-MM-DDTHH:mm:ss.SSSZ')
-  t.equal(moment.parseFormat('2014-09-04T01:20:28+0200'), 'YYYY-MM-DDTHH:mm:ssZ', '#56 2014-09-04T01:20:28+0200 → YYYY-MM-DDTHH:mm:ssZ')
+  t.equal(moment.parseFormat('2014-23-04T01:20:28.888+0200'), 'YYYY-MM-DDTHH:mm:ss.SSSZZ', '#56 2014-23-04T01:20:28.888+0200 → YYYY-MM-DDTHH:mm:ss.SSSZZ')
+  t.equal(moment.parseFormat('2014-09-04T01:20:28.888+0200'), 'YYYY-MM-DDTHH:mm:ss.SSSZZ', '#56 2014-09-04T01:20:28.888+0200 → YYYY-MM-DDTHH:mm:ss.SSSZZ')
+  t.equal(moment.parseFormat('2014-09-04T01:20:28.888-0200'), 'YYYY-MM-DDTHH:mm:ss.SSSZZ', '#56 2014-09-04T01:20:28.888-0200 → YYYY-MM-DDTHH:mm:ss.SSSZZ')
+  t.equal(moment.parseFormat('2014-09-04T01:20:28+0200'), 'YYYY-MM-DDTHH:mm:ssZZ', '#56 2014-09-04T01:20:28+0200 → YYYY-MM-DDTHH:mm:ssZZ')
+
+  t.equal(moment.parseFormat('2014-23-04T01:20:28.888+02:00'), 'YYYY-MM-DDTHH:mm:ss.SSSZ', '#56 2014-23-04T01:20:28.888+0200 → YYYY-MM-DDTHH:mm:ss.SSSZ')
+  t.equal(moment.parseFormat('2014-09-04T01:20:28.888+02:00'), 'YYYY-MM-DDTHH:mm:ss.SSSZ', '#56 2014-09-04T01:20:28.888+0200 → YYYY-MM-DDTHH:mm:ss.SSSZ')
+  t.equal(moment.parseFormat('2014-09-04T01:20:28.888-02:00'), 'YYYY-MM-DDTHH:mm:ss.SSSZ', '#56 2014-09-04T01:20:28.888-0200 → YYYY-MM-DDTHH:mm:ss.SSSZ')
+  t.equal(moment.parseFormat('2014-09-04T01:20:28+02:00'), 'YYYY-MM-DDTHH:mm:ssZ', '#56 2014-09-04T01:20:28+0200 → YYYY-MM-DDTHH:mm:ssZ')
+
   t.end()
 
   // https://github.com/gr2m/moment-parseformat/issues/65
