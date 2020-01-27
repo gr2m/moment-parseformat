@@ -40,7 +40,7 @@
     "mkdirp": "^1.0.0",
     "moment": "^2.10.6",
     "rimraf": "^3.0.0",
-    "semantic-release": "^16.0.0",
+    "semantic-release": "^17.0.0",
     "standard": "^14.0.0",
     "tap-spec": "^5.0.0",
     "tape": "^4.2.0"
