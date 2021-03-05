@@ -21,15 +21,9 @@
     "dist",
     "index.js"
   ],
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/gr2m/moment-parseformat.git"
-  },
+  "repository": "github:gr2m/moment-parseformat",
   "author": "Gregor Martynus <gregor@martynus.net>",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/gr2m/moment-parseformat/issues"
-  },
   "homepage": "http://gr2m.github.io/moment-parseformat",
   "devDependencies": {
     "beefy": "^2.1.5",
