@@ -130,7 +130,7 @@ test('Github issue #60', function (t) {
 
 // Partially. Need to pass in a flag to get the DD, since this single D format is favored everywhere else
 test('Github issue #61', function (t) {
-  t.equal(moment.parseFormat('19-feb-1990', { preferLongFormat: true }), 'DD-MMM-YYYY', '05 2015 → DD-MMM-YYYY')
+  t.equal(moment.parseFormat('19-feb-1990', { preferLongFormat: true }), 'DD-MMM-YYYY', '19-feb-1990 → DD-MMM-YYYY')
   t.end()
 })
 
