@@ -66,17 +66,23 @@ test('GitHub issues', function (t) {
   t.equal(moment.parseFormat('Feb 1 2016 1:03:22.11'), 'MMM D YYYY H:mm:ss.SS', 'Feb 1 2016 1:03:22.111 → MMM D YYYY H:mm:ss.SS')
   t.equal(moment.parseFormat('Feb 1 2016 1:03:22.1'), 'MMM D YYYY H:mm:ss.S', 'Feb 1 2016 1:03:22.111 → MMM D YYYY H:mm:ss.S')
 
-  //   // https://github.com/gr2m/moment-parseformat/issues/56
+  // https://github.com/gr2m/moment-parseformat/issues/56
   t.equal(moment.parseFormat('2014-23-04T01:20:28.888+0200'), 'YYYY-MM-DDTHH:mm:ss.SSSZZ', '#56 2014-23-04T01:20:28.888+0200 → YYYY-MM-DDTHH:mm:ss.SSSZZ')
   t.equal(moment.parseFormat('2014-09-04T01:20:28.888+0200'), 'YYYY-MM-DDTHH:mm:ss.SSSZZ', '#56 2014-09-04T01:20:28.888+0200 → YYYY-MM-DDTHH:mm:ss.SSSZZ')
   t.equal(moment.parseFormat('2014-09-04T01:20:28.888-0200'), 'YYYY-MM-DDTHH:mm:ss.SSSZZ', '#56 2014-09-04T01:20:28.888-0200 → YYYY-MM-DDTHH:mm:ss.SSSZZ')
   t.equal(moment.parseFormat('2014-09-04T01:20:28+0200'), 'YYYY-MM-DDTHH:mm:ssZZ', '#56 2014-09-04T01:20:28+0200 → YYYY-MM-DDTHH:mm:ssZZ')
 
-  //   // https://github.com/gr2m/moment-parseformat/issues/65
+  t.equal(moment.parseFormat('2014-23-04T01:20:28.888+02:00'), 'YYYY-MM-DDTHH:mm:ss.SSSZ', '#56 2014-23-04T01:20:28.888+0200 → YYYY-MM-DDTHH:mm:ss.SSSZ')
+  t.equal(moment.parseFormat('2014-09-04T01:20:28.888+02:00'), 'YYYY-MM-DDTHH:mm:ss.SSSZ', '#56 2014-09-04T01:20:28.888+0200 → YYYY-MM-DDTHH:mm:ss.SSSZ')
+  t.equal(moment.parseFormat('2014-09-04T01:20:28.888-02:00'), 'YYYY-MM-DDTHH:mm:ss.SSSZ', '#56 2014-09-04T01:20:28.888-0200 → YYYY-MM-DDTHH:mm:ss.SSSZ')
+  t.equal(moment.parseFormat('2014-09-04T01:20:28+02:00'), 'YYYY-MM-DDTHH:mm:ssZ', '#56 2014-09-04T01:20:28+0200 → YYYY-MM-DDTHH:mm:ssZ')
+
+  // https://github.com/gr2m/moment-parseformat/issues/65
   t.equal(moment.parseFormat('Aug 11 2015 11:20p'), 'MMM D YYYY h:mma', '#65 Aug 11 2015 11:20p → MMM D YYYY H:mmp')
   t.equal(moment.parseFormat('Aug 11 2015 11:20a'), 'MMM D YYYY h:mma', '#65 Aug 11 2015 11:20p → MMM D YYYY H:mmp')
   t.equal(moment.parseFormat('Aug 11 2015 11:20P'), 'MMM D YYYY h:mmA', '#65 Aug 11 2015 11:20p → MMM D YYYY H:mmp')
   t.equal(moment.parseFormat('Aug 11 2015 11:20A'), 'MMM D YYYY h:mmA', '#65 Aug 11 2015 11:20p → MMM D YYYY H:mmp')
+
   t.end()
 })
 
