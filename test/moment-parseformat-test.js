@@ -52,16 +52,16 @@ test('GitHub issues', function (t) {
   t.equal(moment.parseFormat('2014-09-04T01:20:28.888-02:00'), 'YYYY-MM-DDTHH:mm:ss.SSSZ', '#23 2014-09-04T01:20:28.888-02:00 → YYYY-MM-DDTHH:mm:ss.SSSZ')
   t.equal(moment.parseFormat('2014-09-04T01:20:28.888Z'), 'YYYY-MM-DDTHH:mm:ss.SSSZ', '#23 2014-02-02T10:11:58.888Z → YYYY-MM-DDTHH:mm:ss.SSSZ')
 
-  //   // https://github.com/gr2m/moment.parseFormat/pull/29
+  // https://github.com/gr2m/moment.parseFormat/pull/29
   t.equal(moment.parseFormat('1434575583'), 'X', '1434575583 → X')
   t.equal(moment.parseFormat('1318781876406'), 'x', '1318781876406 → x')
 
-  //   // https://github.com/gr2m/moment-parseformat/pull/37
+  // https://github.com/gr2m/moment-parseformat/pull/37
   t.equal(moment.parseFormat('October 27 2015 11:28:32.0'), 'MMMM D YYYY HH:mm:ss.S', 'October 27 2015 11:28:32.0 → MMMM D YYYY HH:mm:ss.S')
   t.equal(moment.parseFormat('October 27 2015 11:28:32.01'), 'MMMM D YYYY HH:mm:ss.SS', 'October 27 2015 11:28:32.0 → MMMM D YYYY HH:mm:ss.SS')
   t.equal(moment.parseFormat('October 27 2015 11:28:32.012'), 'MMMM D YYYY HH:mm:ss.SSS', 'October 27 2015 11:28:32.0 → MMMM D YYYY HH:mm:ss.SSS')
 
-  //   // https://github.com/gr2m/moment-parseformat/pull/45
+  // https://github.com/gr2m/moment-parseformat/pull/45
   t.equal(moment.parseFormat('Feb 1 2016 1:03:22.111'), 'MMM D YYYY H:mm:ss.SSS', 'Feb 1 2016 1:03:22.111 → MMM D YYYY H:mm:ss.SSS')
   t.equal(moment.parseFormat('Feb 1 2016 1:03:22.11'), 'MMM D YYYY H:mm:ss.SS', 'Feb 1 2016 1:03:22.111 → MMM D YYYY H:mm:ss.SS')
   t.equal(moment.parseFormat('Feb 1 2016 1:03:22.1'), 'MMM D YYYY H:mm:ss.S', 'Feb 1 2016 1:03:22.111 → MMM D YYYY H:mm:ss.S')
