@@ -12,10 +12,7 @@ branches:
 
 jobs:
   include:
-    # run tests in all supported node versions
     # run coverage only in Node 10
-    - node_js: 6
-    - node_js: 8
     - node_js: 10
       script:
         - npm run test
