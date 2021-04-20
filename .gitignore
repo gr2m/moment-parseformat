@@ -3,5 +3,3 @@ coverage/
 demo/moment-parseformat.js
 dist/
 node_modules/
-test-builder.js
-
