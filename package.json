@@ -35,7 +35,7 @@
     "moment": "^2.10.6",
     "rimraf": "^3.0.0",
     "semantic-release": "^17.0.0",
-    "standard": "^14.0.0",
+    "standard": "^16.0.3",
     "tap-spec": "^5.0.0",
     "tape": "^5.0.0"
   },
