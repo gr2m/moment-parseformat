@@ -3932,6 +3932,6 @@ test('Tons of varios date time tz formats', function (t) {
   t.equal(moment.parseFormat('Sunday, March 4, 2012 9:00:00 PM+07:00'), 'dddd, MMMM D, YYYY h:mm:ss AZ', 'Sunday, March 4, 2012 9:00:00 PM+07:00 → dddd, MMMM D, YYYY h:mm:ss AZ')
   t.equal(moment.parseFormat('Sunday, March 4, 2012 9:00:00 pm+0700'), 'dddd, MMMM D, YYYY h:mm:ss aZZ', 'Sunday, March 4, 2012 9:00:00 pm+0700 → dddd, MMMM D, YYYY h:mm:ss aZZ')
   t.equal(moment.parseFormat('Sunday, March 4, 2012 9:00:00 pm+07:00'), 'dddd, MMMM D, YYYY h:mm:ss aZ', 'Sunday, March 4, 2012 9:00:00 pm+07:00 → dddd, MMMM D, YYYY h:mm:ss aZ')
-
+  t.equal(moment.parseFormat('Sun Mar 23 10:14:18 CET 2021'),'ddd MMM D H:mm:ss [CET] YYYY', 'Sun Mar 23 10:14:18 CET 2021 → ddd MMM D H:mm:ss [CET] YYYY' )
   t.end()
 })
